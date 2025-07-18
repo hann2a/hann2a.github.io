@@ -1,17 +1,18 @@
 ---
 layout: page
-title: About the Theme
-tags: [about, Jekyll, theme, ramme]
-date: 2016-03-21
+title: About me
+tags: [about]
+date: 2025-07-18
 ---
 ![Logo]({{ site.url }}/{{ site.picture }}){: .selfie}
 
-**Ramme** is a simple jekyll theme.
-     
-I made this theme after seeing this [screenshot](http://spoonm.org/share/rice/01.png). I took some parts from @mmistakes, like TOC, sample posts. I never tought making a theme from scratch would be this hard. And it's still WIP.
-     
-I'm not a designer or something, so I'm sure there is a better way to make this theme. But it's working and looks acceptable for different screen sizes. If something looks extremely ugly and you can't resist to fix it, just send me a PR. I will be grateful.
-     
-You want to **use it?**      
-      
-[Install Ramme](https://github.com/TaylanTatli/Ramme){: .btn}
+**학력**
+고려대학교 식품자원경제학과 졸업 
+고려대학교 LB&C 융합전공 
+
+**수상**
+SKDT IDEA 공모전 장려상 수상(2022)
+
+**활동**
+SSAFY 14기 POTENTIAL 입과 
+

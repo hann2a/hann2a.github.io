@@ -146,3 +146,12 @@ h1, h2, h3, h4, h5, h6 {
 pre, code {
   font-family: $font2 !important;
 }
+/* 네비게이션 메뉴를 영어 폰트로 */
+.nav, .navigation, .menu, .header-menu, .navbar, .top-nav {
+  font-family: $font1 !important; /* PT Serif */
+}
+
+/* 네비게이션 링크들 */
+nav, nav a, nav ul, nav li {
+  font-family: $font1 !important;
+}

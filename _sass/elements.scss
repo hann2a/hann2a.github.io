@@ -155,3 +155,7 @@ pre, code {
 nav, nav a, nav ul, nav li {
   font-family: $font1 !important;
 }
+/* 만약 위의 것들이 안 되면 더 구체적으로 */
+header nav, header .menu, header .navigation {
+  font-family: $font1 !important;
+}

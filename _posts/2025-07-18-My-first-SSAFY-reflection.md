@@ -10,7 +10,8 @@ tag:
 
 {% include toc.html %}
 
-## Notices
+## 테스트 
 
-This is test
+이건 테스트이다. 
+한국어가 과연 잘 지원될까?
 {: .notice}

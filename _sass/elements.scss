@@ -158,3 +158,17 @@ pre, code {
 nav.nav * {
   font-family: $font1 !important;
 }
+/* TOC 전체 영역 한국어 폰트 */
+section#table-of-contents {
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
+/* TOC 내부 모든 요소 */
+section#table-of-contents * {
+  font-family: "Noto Sans KR", sans-serif !important;
+}
+
+/* "Contents" 제목 */
+.toc header h3 {
+  font-family: "Noto Sans KR", sans-serif !important;
+}

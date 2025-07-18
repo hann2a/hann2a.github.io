@@ -4,7 +4,7 @@ bio:            'Just a simple Jekyll theme'
 description:    "Simple Jekyll theme for your blog by Taylan Tatlı"
 picture:        'assets/img/Logo.png'
 locale:         en_US
-url:            http://taylantatli.me/Ramme
+url:            https://hann2a.github.io/
 
 # Jekyll
 permalink:      /:title/

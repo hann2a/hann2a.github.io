@@ -1,9 +1,10 @@
 ---
-layout: post
-title: "Testing Readability with a Bunch of Text"
-date: 2012-05-22
-excerpt: "A ton of text to test readability."
-tags: [sample post, readability, test]
+# 프론트 매터 
+layout: post # 사용 템플릿 
+title: "Testing Readability with a Bunch of Text" # 포스트 제목(브라우저 탭, 포스트 목록에 표시)
+date: 2012-05-22 # 발행 날짜 (URL과 정렬에 사용됨)
+excerpt: "A ton of text to test readability." # 포스트 목록에서 미리보기 텍스트로 사용?
+tags: [sample post, readability, test] # 태그 기반 분류 및 필터링에 사용 
 ---
 
 Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90's narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney's. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.

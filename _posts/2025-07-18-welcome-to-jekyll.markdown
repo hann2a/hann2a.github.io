@@ -1,8 +1,9 @@
 ---
-layout: post
+# 프론트 매터 
+layout: post # 사용 템플릿 
 title:  "Welcome to Jekyll!"
-date:   2025-07-18 11:26:12 +0900
-categories: jekyll update
+date:   2025-07-18 11:26:12 +0900 # 발행 날짜 (URL과 정렬에 사용됨)
+categories: jekyll update # 포스트 분류
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 

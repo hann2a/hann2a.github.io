@@ -1,9 +1,9 @@
 # Site
-title:          Ramme
-bio:            'Just a simple Jekyll theme'
-description:    "Simple Jekyll theme for your blog by Taylan Tatlı"
+title:          Sohee Kim 
+bio:            'Portfolio'
+description:    "Software Developer Portfolio"
 picture:        'assets/img/Logo.png'
-locale:         en_US
+locale:         ko_KR
 url:            https://hann2a.github.io/
 
 # Jekyll

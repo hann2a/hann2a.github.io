@@ -172,13 +172,12 @@ section#table-of-contents * {
 .toc header h3 {
   font-family: "Noto Sans KR", sans-serif !important;
 }
-/* 포스트 페이지의 제목만 */
-body.post .post-title,
-body.post h1,
-.layout-post h1,
-article.post h1 {
-  word-wrap: break-word;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-  white-space: normal;
+/* 포스트 제목 줄바꿈 - 정확한 선택자 */
+.wrapper .title h1 {
+  word-wrap: break-word !important;
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+  max-width: 100% !important;
 }

@@ -132,17 +132,19 @@ kbd {
 	float: left;
 	width: 33.33333%;
 }
-/* 기존 코드 삭제하고 이걸로 교체 */
+/* 영어는 PT Serif */
 body, p, h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption {
-  font-family: $font1; /* 기본 영어 폰트 */
+  font-family: $font1;
 }
 
-/* 한국어 문자 범위에만 강제로 한국 폰트 적용 */
+/* 한국어만 따로 지정 */
+@supports (font-variation-settings: normal) {
+  body, p, h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption {
+    font-family: "Noto Sans KR", $font1;
+  }
+}
+
+/* 강제로 한국어 문자에만 적용 */
 body *, p *, h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, li *, td *, th *, blockquote *, figcaption * {
-  font-family: "Noto Sans KR", $font1 !important;
-}
-
-/* 영어 문자 범위 복원 */
-body, p, h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption {
-  font-family: $font1, "Noto Sans KR" !important;
+  font-family: "Noto Sans KR" !important;
 }

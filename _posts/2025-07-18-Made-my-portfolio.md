@@ -1,11 +1,15 @@
 ---
 layout: post
-title:  "싸피 첫 회고"
+title:  "Jekyll과 Github Pages로 포트폴리오 사이트 만들기"
 date:   2025-07-18
 excerpt: ""
 tag:
-- reflection
-- ssafy
+- Jekyll 
+- Github Pages
+- Github 
+- Portfolio
+- Student
+- Software Developer
 ---
 
 {% include toc.html %}

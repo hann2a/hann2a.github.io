@@ -1,24 +1,46 @@
 # This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
 
 entries:
-- title: Sidebar
+- title: Dev Blog
   levels: one
   folders:
 
-  - title: Products
+  - title: Retrospective
     output: web
     folderitems:
-    - title: News
-      url: /news.html
+    - title: Monthly Review
+      url: /monthly-review.html
       output: web
-    - title: Theme instructions
-      url: /mydoc_introduction.html
+    - title: Project Review
+      url: /project-review.html
       output: web
-    - title: Product 1
-      url: /p1_landing_page.html
+
+  - title: Programming
+    output: web
+    folderitems:
+    - title: Python
+      url: /python.html
       output: web
-    - title: Product 2
-      url: /p2_landing_page.html
+    - title: JavaScript
+      url: /javascript.html
+      output: web
+
+  - title: Web Development
+    output: web
+    folderitems:
+    - title: HTML
+      url: /html.html
+      output: web
+    - title: CSS
+      url: /css.html
+      output: web
+
+  - title: Tools
+    output: web
+    folderitems:
+    - title: Git
+      url: /git.html
       output: web
 
 # Copyright 2021 Google LLC

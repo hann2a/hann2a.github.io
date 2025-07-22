@@ -1,8 +1,7 @@
 ---
 title: "파이썬 복습 1일차"
-permalink: daily-review-python-1.html
 sidebar: home_sidebar
-layout: page
+layout: post
 categories: [daily-review]
 updated: 2025-07-21
 ---
@@ -100,4 +99,4 @@ print(0x10)
   -> 아니오 하면 문장 
 
 #### 결론 
-f-string에 대해 더 알아봐야겠다고 생각했다. 
+f-string에 대해 더 알아봐야겠다고 생각했다.

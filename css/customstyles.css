@@ -1201,3 +1201,21 @@ h4.panel-title {
         display:block !important;
     }
 }
+/* 진한 파랑 테마 오버라이드 */
+.navbar-inverse {
+    background-color: #1e3a8a !important;
+    border-color: #1d4ed8 !important;
+}
+
+.nav > li.active > a {
+    background-color: #1e3a8a !important;
+}
+
+.btn-primary {
+    background-color: #1e3a8a !important;
+    border-color: #1e3a8a !important;
+}
+
+.nav > li > a:hover {
+    background-color: #3b82f6 !important;
+}

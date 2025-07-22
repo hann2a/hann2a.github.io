@@ -4,10 +4,6 @@ entries:
 - title: Dev Blog
   levels: one
   folders:
-  - title: Daily Review
-    url: /daily-review.html
-    output: web
-
   - title: Retrospective
     output: web
     folderitems:

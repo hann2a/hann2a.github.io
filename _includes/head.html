@@ -41,3 +41,37 @@
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.url }}">
 
 {% comment %} Copyright 2021 Google LLC {% endcomment %}
+
+<style>
+/* 강제 색상 변경 */
+.navbar-inverse {
+    background-color: #1e3a8a !important;
+    border-color: #1d4ed8 !important;
+}
+
+.navbar-inverse .navbar-nav>li>a, 
+.navbar-inverse .navbar-brand {
+    color: white !important;
+}
+
+.nav > li.active > a {
+    background-color: #1e3a8a !important;
+}
+
+.btn-primary {
+    background-color: #1e3a8a !important;
+    border-color: #1e3a8a !important;
+}
+
+.nav > li > a:hover {
+    background-color: #3b82f6 !important;
+}
+
+.navbar-inverse .navbar-nav > .active > a, 
+.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: #1e3a8a !important;
+}
+</style>
+
+{% comment %} Copyright 2021 Google LLC {% endcomment %}

@@ -43,6 +43,7 @@ Bundler's Gemfile specifies how project dependencies are managed. Although this 
 * Gemfile
 * Gemfile.lock
 
+
 If you've never run Jekyll on your computer (you can check with `jekyll --version`), you may need to install the jekyll gem:
 
 ```

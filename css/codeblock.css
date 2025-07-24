@@ -1,6 +1,15 @@
-/* 기존 Jekyll 코드 블록과 호환되도록 수정 */
-pre.hljs {
+pre {
   position: relative;
+}
+pre::after {
+  content: attr(data-ke-language);
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  color: #cfd2d1;
+  font-size: 12px;
+}
+.hljs {
   display: flex !important;
   flex-direction: column;
   padding: 0 !important;
@@ -8,33 +17,20 @@ pre.hljs {
   border-radius: 8px;
   box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
   color: #cfd2d1;
-  background-color: #343131 !important;
+  background-color: #343131;
   font-family: Menlo, Courier, monospace;
-  border: none;
-  overflow: visible;
 }
-
-pre.hljs > code {
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-
 .hljs .line {
   counter-increment: line-idx;
   line-height: 1.5;
-  padding: 0 16px;
-  min-height: 1.5em;
+  white-space: pre;
 }
-
 .hljs .line:hover {
   background-color: #262830;
 }
-
 .hljs .line:hover::before {
   color: #cfd2d1;
 }
-
 .hljs .line::before {
   content: counter(line-idx);
   width: 24px;
@@ -43,72 +39,56 @@ pre.hljs > code {
   margin-right: 16px;
   font-size: 0.8rem;
   color: #747a7a;
-  counter-increment: line-idx;
 }
-
 .hljs .code-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  padding: 12px 20px !important;
-  background-color: #2d2d2d !important;
-  border-radius: 8px 8px 0 0 !important;
-  min-height: 45px !important;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  background-color: #434041;
+  border-radius: 8px 8px 0 0;
 }
-
 .hljs .code-header .btn {
-  border-radius: 50% !important;
-  width: 12px !important;
-  height: 12px !important;
-  margin-right: 8px !important;
-  border: none !important;
-  display: inline-block !important;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
 }
-
 .hljs .code-header .btn.red {
-  background-color: #ff5f57 !important;
+  background-color: #f5655b;
 }
-
 .hljs .code-header .btn.yellow {
-  background-color: #ffbd2e !important;
+  background-color: #f6bd3b;
 }
-
 .hljs .code-header .btn.green {
-  background-color: #28ca42 !important;
+  background-color: #43c645;
 }
-
 .hljs .code-body {
   max-height: 600px;
-  margin: 0;
+  margin: 32px 8px;
   overflow: auto;
-  counter-reset: line-idx;
 }
-
 .hljs .code-body::-webkit-scrollbar {
   width: 12px;
 }
-
 .hljs .code-body::-webkit-scrollbar-thumb {
   background-color: rgb(1 2 3 / 80%);
   border-radius: 4px;
 }
-
 .hljs .code-body::-webkit-scrollbar-corner {
   display: none;
 }
-
 .hljs .copy-btn {
-  background-color: transparent;
+  background-color: #ffffff17;
   border: none;
   cursor: pointer;
   color: #fff;
-  font-size: 0.75rem;
-  padding: 6px 12px;
   border-radius: 4px;
+  width: 36px;
+  height: 28px;
   margin-left: auto;
   transition: 0.2s background-color;
+  font-size: 0;
 }
-
 .hljs .copy-btn:hover {
-  background-color: #555152;
+  background-color: #ffffff30;
 }

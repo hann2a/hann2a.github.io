@@ -47,30 +47,34 @@ pre.hljs > code {
 }
 
 .hljs .code-header {
-  display: flex;
-  align-items: center;
-  padding: 14px;
-  background-color: #434041;
-  border-radius: 8px 8px 0 0;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 12px 20px !important;
+  background-color: #2d2d2d !important;
+  border-radius: 8px 8px 0 0 !important;
+  min-height: 45px !important;
 }
 
 .hljs .code-header .btn {
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  margin: 0 5px;
+  border-radius: 50% !important;
+  width: 12px !important;
+  height: 12px !important;
+  margin-right: 8px !important;
+  border: none !important;
+  display: inline-block !important;
 }
 
 .hljs .code-header .btn.red {
-  background-color: #f5655b;
+  background-color: #ff5f57 !important;
 }
 
 .hljs .code-header .btn.yellow {
-  background-color: #f6bd3b;
+  background-color: #ffbd2e !important;
 }
 
 .hljs .code-header .btn.green {
-  background-color: #43c645;
+  background-color: #28ca42 !important;
 }
 
 .hljs .code-body {

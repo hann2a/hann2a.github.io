@@ -3,7 +3,7 @@ repository: hann2a/hann2a.github.io
 output: web
 # this property is useful for conditional filtering of content that is separate from the PDF.
 
-topnav_title: hann2 Documentation 
+topnav_title: Deveolper Han 
 # this appears on the top navigation bar next to the home button
 
 site_title: documentation for hann2

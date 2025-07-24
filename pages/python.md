@@ -9,13 +9,13 @@ layout: page
 
 파이썬 개념 및 코드 학습 페이지 입니다. 
 
-## 최근 Daily Review 포스트
+## 최근 Python-study 포스트
 {% for post in site.categories.python %}
 - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
 {% endfor %}
 
 ---
 
-## Daily Review 작성 가이드
+## Python-study 작성 가이드
 - 각 개념은 구분된 글로 
 - 같은 개념은 ver2. 이런 식으로 새 글 작성 

@@ -16,6 +16,9 @@ entries:
     - title: Project Review
       url: /project-review.html
       output: web
+    - title: Code Review
+      url: /code-review.html
+      output: web
 
   - title: Algorithm
     output: web

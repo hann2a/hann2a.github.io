@@ -10,7 +10,7 @@ layout: page
 학습한 온라인 실습실 문제들을 기록하는 페이지 입니다. 
 
 ## 최근 온라인 실습실 포스트
-{% for post in site.categories.swea %}
+{% for post in site.categories.code-review %}
 - [{{ post.title }}]({{ post.url }}) - {{ post.date | date: "%Y-%m-%d" }}
 {% endfor %}
 

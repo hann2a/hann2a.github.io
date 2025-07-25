@@ -1,5 +1,5 @@
 ---
-title: "[파이썬 S/W 문제해결 기본] 1일차 - 구간합"
+title: "SWEA 4835[파이썬 S/W 문제해결 기본] 1일차 - 구간합"
 sidebar: home_sidebar
 layout: post
 categories: [swea]

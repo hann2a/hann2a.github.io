@@ -1,25 +1,9 @@
 /* 공통 스타일 */
 pre {
   position: relative;
-  padding-top: 2.5em; /* 헤더 공간 확보 */
+  padding-top: 3.5em; /* 헤더 공간 더 확보 (기존 2.5em → 3.5em) */
   margin: 1em 0;
 }
-
-/* 언어 이름 표시 제거 (불필요 시 주석 해제) */
-/*
-pre::after {
-  content: attr(data-ke-language);
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 4px 8px;
-  background-color: #1a1a1a;
-  color: white;
-  font-size: 12px;
-  font-family: monospace;
-  border-bottom-right-radius: 5px;
-}
-*/
 
 /* 기본 코드 배경 및 글자색 오버라이드 */
 pre.hljs,
@@ -49,14 +33,14 @@ pre.hljs.highlight {
   top: 0;
   left: 0;
   right: 0;
-  height: 2.5em;
+  height: 3.5em; /* ✅ 헤더 높이 크게 */
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  padding: 0 1em;
+  align-items: center; /* ✅ 버튼 수직 가운데 정렬 */
+  padding: 0 1.2em;
   background-color: #434041;
   color: white;
-  font-size: 0.85em;
+  font-size: 0.9em;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   z-index: 2;
@@ -70,10 +54,15 @@ pre.hljs.highlight {
   cursor: pointer;
   color: #cfd2d1;
   border-radius: 4px;
-  padding: 6px 12px;
+  padding: 5px 14px; /* ✅ 내부 여백 축소해 공간감 줌 */
   font-size: 12px;
   font-family: inherit;
-  transition: 0.2s background-color;
+  transition: background-color 0.2s ease;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
 }
 
 .hljs .header-copy-btn:hover {

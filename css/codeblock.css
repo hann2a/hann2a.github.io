@@ -1,8 +1,12 @@
+/* 공통 스타일 */
 pre {
   position: relative;
-  padding-top: 2em; /* 언어명을 위한 공간 확보 */
+  padding-top: 2.5em; /* 헤더 공간 확보 */
+  margin: 1em 0;
 }
 
+/* 언어 이름 표시 제거 (불필요 시 주석 해제) */
+/*
 pre::after {
   content: attr(data-ke-language);
   position: absolute;
@@ -15,104 +19,116 @@ pre::after {
   font-family: monospace;
   border-bottom-right-radius: 5px;
 }
+*/
 
-
-/* syntax.css의 .highlight를 덮어쓰기 */
+/* 기본 코드 배경 및 글자색 오버라이드 */
 pre.hljs,
 .hljs.highlight,
 .hljs .highlight,
 pre.hljs.highlight {
- background-color: #343131 !important;
- color: #cfd2d1 !important;
+  background-color: #343131 !important;
+  color: #cfd2d1 !important;
 }
 
+/* 전체 코드 블록 레이아웃 */
 .hljs {
- display: flex !important;
- flex-direction: column;
- padding: 0 !important;
- font-size: 14px;
- border-radius: 8px;
- box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
- color: #cfd2d1 !important;
- background-color: #343131 !important; /* !important 추가 */
- font-family: Menlo, Courier, monospace;
+  position: relative;
+  display: block;
+  padding: 0;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
+  color: #cfd2d1 !important;
+  background-color: #343131 !important;
+  font-family: Menlo, Courier, monospace;
 }
-.hljs .line {
- counter-increment: line-idx;
- line-height: 1.5;
- white-space: pre;
-}
-.hljs .line:hover {
- background-color: #262830; /* 원래 색상으로 복원 */
-}
-.hljs .line:hover::before {
- color: #cfd2d1;
-}
-.hljs .line::before {
- content: counter(line-idx);
- width: 24px;
- display: inline-block;
- text-align: right;
- margin-right: 16px;
- font-size: 0.8rem;
- color: #747a7a;
-}
+
+/* 상단 코드 헤더 */
 .hljs .code-header {
- display: flex !important;
- align-items: center !important;
- justify-content: flex-end !important; /* 오른쪽 정렬로 변경 */
- padding: 12px 16px !important; /* 여백을 더 늘림 (7px → 12px, 14px → 16px) */
- background-color: #434041 !important;
- border-radius: 8px 8px 0 0 !important;
- margin: 0 !important;
- position: relative !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1em;
+  background-color: #434041;
+  color: white;
+  font-size: 0.85em;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  z-index: 2;
+  box-sizing: border-box;
 }
-.hljs .code-header .btn {
- display: none !important; /* 동그란 버튼들 숨기기 */
-}
+
+/* 복사 버튼 */
 .hljs .header-copy-btn {
- background-color: #ffffff17;
- border: none;
- cursor: pointer;
- color: #cfd2d1;
- border-radius: 4px;
- padding: 6px 12px; /* 버튼 패딩도 늘림 (4px 8px → 6px 12px) */
- font-size: 12px; /* 폰트 크기도 약간 늘림 (11px → 12px) */
- font-family: inherit;
- transition: 0.2s background-color;
- /* margin-left: auto; 제거 - justify-content: flex-end로 충분함 */
+  background-color: #ffffff17;
+  border: none;
+  cursor: pointer;
+  color: #cfd2d1;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  transition: 0.2s background-color;
 }
+
 .hljs .header-copy-btn:hover {
- background-color: #ffffff30;
- color: #ffffff;
+  background-color: #ffffff30;
+  color: #ffffff;
 }
+
+/* 코드 본문 */
 .hljs .code-body {
- max-height: 600px;
- margin: 24px 16px 24px 16px; /* 좌우 여백을 더 넓게 (8px → 16px), 위아래도 조정 (32px → 24px) */
- overflow: auto;
+  padding: 1em;
+  max-height: 600px;
+  overflow: auto;
 }
+
+/* 라인별 코드 */
+.hljs .line {
+  counter-increment: line-idx;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+.hljs .line::before {
+  content: counter(line-idx);
+  width: 24px;
+  display: inline-block;
+  text-align: right;
+  margin-right: 16px;
+  font-size: 0.8rem;
+  color: #747a7a;
+}
+
+.hljs .line:hover {
+  background-color: #262830;
+}
+
+.hljs .line:hover::before {
+  color: #cfd2d1;
+}
+
+/* 스크롤바 */
 .hljs .code-body::-webkit-scrollbar {
- width: 12px;
+  width: 12px;
 }
+
 .hljs .code-body::-webkit-scrollbar-thumb {
- background-color: rgb(1 2 3 / 80%); /* 원래 스크롤바 색상으로 복원 */
- border-radius: 4px;
+  background-color: rgba(1, 2, 3, 0.8);
+  border-radius: 4px;
 }
+
 .hljs .code-body::-webkit-scrollbar-corner {
- display: none;
+  display: none;
 }
+
+/* 불필요한 버튼 숨김 (예: 복수 버튼) */
+.hljs .btn,
 .hljs .copy-btn {
- background-color: #ffffff17;
- border: none;
- cursor: pointer;
- color: #fff;
- border-radius: 4px;
- width: 36px;
- height: 28px;
- margin-left: auto;
- transition: 0.2s background-color;
- font-size: 0;
-}
-.hljs .copy-btn:hover {
- background-color: #ffffff30;
+  display: none !important;
 }

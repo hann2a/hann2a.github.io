@@ -43,7 +43,7 @@ pre::after {
 .hljs .code-header {
  display: flex !important;
  align-items: center !important;
- padding: 14px !important;
+ padding: 7px 14px !important; /* 위아래 여백을 반으로 줄임 (14px → 7px) */
  background-color: #434041 !important;
  border-radius: 8px 8px 0 0 !important;
 }
@@ -52,7 +52,7 @@ pre::after {
 }
 .hljs .code-body {
  max-height: 600px;
- margin: 32px 8px;
+ margin: 24px 16px 24px 16px; /* 좌우 여백을 더 넓게 (8px → 16px), 위아래도 조정 (32px → 24px) */
  overflow: auto;
 }
 .hljs .code-body::-webkit-scrollbar {

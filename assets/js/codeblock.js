@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
      `<div class="line">${line || ' '}</div>`
    ).join('');
    
-   // 복사 버튼 생성
-   const copyButton = `<button type="button" class="copy-btn" 
+   // 헤더에 들어갈 복사 버튼 생성 (기존 copy-btn 대신 header-copy-btn 사용)
+   const headerCopyButton = `<button type="button" class="header-copy-btn" 
      data-code="${encodeURI(originalCode)}" 
      onclick="copyBlockCode(this)">${COPY_BUTTON_TEXT_BEFORE}</button>`;
    
@@ -44,10 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
    const codeBody = `<div class="code-body">${processedCodes}</div>`;
    const codeHeader = `
      <div class="code-header">
-       <div class="btn red"></div>
-       <div class="btn yellow"></div>
-       <div class="btn green"></div>
-       ${copyButton}
+       ${headerCopyButton}
      </div>`;
    
    // pre 요소에 hljs 클래스 추가

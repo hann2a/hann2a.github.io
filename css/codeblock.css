@@ -43,12 +43,29 @@ pre::after {
 .hljs .code-header {
  display: flex !important;
  align-items: center !important;
+ justify-content: space-between !important; /* 좌우 정렬을 위해 추가 */
  padding: 7px 14px !important; /* 위아래 여백을 반으로 줄임 (14px → 7px) */
  background-color: #434041 !important;
  border-radius: 8px 8px 0 0 !important;
 }
 .hljs .code-header .btn {
  display: none !important; /* 동그란 버튼들 숨기기 */
+}
+.hljs .header-copy-btn {
+ background-color: #ffffff17;
+ border: none;
+ cursor: pointer;
+ color: #cfd2d1;
+ border-radius: 4px;
+ padding: 4px 8px;
+ font-size: 11px;
+ font-family: inherit;
+ transition: 0.2s background-color;
+ margin-left: auto; /* 오른쪽으로 밀어내기 */
+}
+.hljs .header-copy-btn:hover {
+ background-color: #ffffff30;
+ color: #ffffff;
 }
 .hljs .code-body {
  max-height: 600px;

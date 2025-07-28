@@ -44,7 +44,7 @@ pre::after {
  display: flex !important;
  align-items: center !important;
  justify-content: space-between !important; /* 좌우 정렬을 위해 추가 */
- padding: 7px 14px !important; /* 위아래 여백을 반으로 줄임 (14px → 7px) */
+ padding: 12px 16px !important; /* 여백을 더 늘림 (7px → 12px, 14px → 16px) */
  background-color: #434041 !important;
  border-radius: 8px 8px 0 0 !important;
 }
@@ -57,8 +57,8 @@ pre::after {
  cursor: pointer;
  color: #cfd2d1;
  border-radius: 4px;
- padding: 4px 8px;
- font-size: 11px;
+ padding: 6px 12px; /* 버튼 패딩도 늘림 (4px 8px → 6px 12px) */
+ font-size: 12px; /* 폰트 크기도 약간 늘림 (11px → 12px) */
  font-family: inherit;
  transition: 0.2s background-color;
  margin-left: auto; /* 오른쪽으로 밀어내기 */

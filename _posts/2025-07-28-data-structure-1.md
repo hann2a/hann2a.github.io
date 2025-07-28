@@ -17,7 +17,7 @@ summary:
 
 - 각 데이터의 효율적인 저장, 관리를 위한 구조를 나눠 놓은 것 
 
-- 단순히 데이터를 묶는 것을 넘어, 프록르ㅐㅁ의 성능, 효율성, 유지보수성에 큰 영향을 미치는 핵심적인 개념 
+- 단순히 데이터를 묶는 것을 넘어, 프로그램의 성능, 효율성, 유지보수성에 큰 영향을 미치는 핵심적인 개념 
 
 ### 메서드 
 
@@ -211,11 +211,189 @@ print(a is b) # False
 
 3. list() 함수 
 
-57p
+### 얕은 복사 예시 
 
-78p
+리스트 슬라이싱 
+
+```Python 
+a = [1, 2, 3]
+b = a[:]
+
+print(a) # [1, 2, 3]
+print(b) # [1, 2, 3]
+```
+
+- 리스트 슬라이싱 [:]은 원본 리스트와 동일한 내용의 새로운 리스트를 만듦 
+
+- 이 때, 새로운 리스트에 복사되는 것은 **요소 자체의 값**이 아니라 해당 요소들이 **참조하는 주소**
+
+- 리스트 슬라이싱으로 복사할 경우 결과물이 리스트 
+
+copy() 메서드 
+
+```Python 
+a = [1, 2, 3]
+b = a.copy()
+
+print(a) # [1, 2, 3]
+print(b) # [1, 2, 3]
+```
+
+- list.copy()는 원본 리스트와 동일한 내용을 가진 새로운 리스트 객체 반환 
+
+- 복사된 새 리스트으 요소들은 원본 리스트의 요소들과 동일한 객체를 참조 
+
+list() 함수 
+
+```Python 
+a = [1, 2, 3]
+d = list(a) # list() 함수를 사용하여 a의 얕은 복사본 생성 
+
+# 원본 리스트 a의 첫 번째 요소 변경 
+a[0] = 100
+
+print(a) # [100, 2, 3]
+print(d) # [1, 2, 3]
+```
+
+### 얕은 복사의 한계 
+
+2차원 리스트와 같이 변경 가능한 **객체 안에 변경 가능한 객체가 있는** 경우 
+
+```Python 
+a = [1, 2, [3, 4, 5]]
+b = a[:]
+
+b[0] = 999
+print(a) # [1, 2, [3, 4, 5]]
+print(b) # [999, 2, [3, 4, 5]]
+
+b[2][1] = 100
+print(a) # [1, 2, [3, 100, 5]]
+print(b) # [999, 2, [3, 100, 5]]
+
+print(f'a[2]와 b[2]가 같은 객체인가? {a[2] is b[2]}') # True 
+```
+- a와 b의 주소는 다르지만 내부 객체의 주소는 같기 때문에 함께 변경됨 
+
+{% include note.html content="리스트 속 리스트까지 새롭게 만들면 메모리 사용량이 기하급수적으로 커지고 리스트의 요소가 객체라면, 복사할 때도 그 참조를 유지하는 것이 더 직관적이기 때문에 이렇게 설계되었다." %}
+
+### 1차원 리스트와 다차원 리스트에서의 차이점
+
+1차원 리스트 
+- 얕은 복사로 충분히 독립적인 복사본을 만들 수 있음 
+
+다차원 리스트
+- 최상위 리스트만 복사되고, 내부 리스트는 여전히 원본과 같은 객체를 참조 
+
+### 깊은 복사 
+
+객체의 모든 수준의 요소를 새로운 메모리에 복사하는 방법 
+
+중첩된 객체까지 모두 새로운 객체로 생성됨 
+
+{% include note.html content="깊은 복사는 원본 객체와 복사본이 완전히 독립적임을 보장합니다. 복사본의 어떤 수준에 있는 중첩된 내용을 변경하더라도 원본 객체에는 절대 영향을 주지 않습니다." %}
+
+copy 모듈에서 제공하는 deepcopy() 함수를 사용 
+```
+import copy
+
+new_object = copy.deepcopy(original_object)
+```
+
+### 깊은 복사 예시 
+```Python 
+import copy
+
+a = [1, 2, [3, 4, 5]]
+b = copy.deepcopy(a)
+
+b[2][1] = 100
+
+print(a) # [1, 2, [3, 4, 5]]
+print(b) # [1, 2, [3, 100, 5]]
+print(f'a[2]와 b[2]가 같은 객체인가? {a[2] is b[2]}') #False 
+```
+중첩된 객체에서의 깊은 복사 
+```Python 
+original = {'a': [1, 2, 3], 'b': {'c':4, 'd': [5, 6]}}
+copied = copy.deepcopy(original)
+
+print(f'원본: {original}') # {'a': [1, 2, 3], 'b': {'c':4, 'd': [5, 6]}}
+print(f'복사본: {copied}') # {'a': [1, 100, 3], 'b': {'c':4, 'd': [500, 6]}}
+print(f"original['b']와 copied['b']가 같은 객체인가? {original['b'] is copied['b']}") # False
+```
+
+### List Comprehension
+
+- 간결하고 효율적인 리스트 생성 방법 
+
+- Pythonic한 코드 
+
+### List Comprehension 구조 
+
+```Python 
+[expression for 변수 in iterable]
+list(expression for 변수 in iterable)
+```
+```Python 
+[expression for 변수 in iterable if 조건식]
+list(expression for 변수 in iterable if 조건식)
+```
+`표현식 for 변수 in 순회 가능한 객체 (if 조건)`
+
+{% include note.html content="표현식은 결과 리스트에 추가될 값, 변수는 순회 중인 현재 요소, 순회 가능한 객체는 반복할 데이터, 조건식은 필터링 조건입니다. if 조건식은 선택 사항이며, 조건을 명시하지 않으면 모든 요소에 대해 표현식이 적용됩니다." %}
+
+### List Comprehension 구조 
+
+사용 전 
+```Python 
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = []
+for num in numbers:
+  squared_numbers.append(num**2)
+print(squared_numbers)
+```
+
+사용 후 
+```Python 
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = [num**2 for num in numbers]
+print(squared_numbers) # [1, 4, 9, 16, 25]
+```
+
+### List Comprehension 활용 예시 
+
+- 2차원 배열 생성 시(인접행렬 생성)
+
+```Python
+data1 = [[0] * (5) for _ in range(5)]
+# 또는 
+data2 = [[0 for _ in range(5)] for _ in range(5)]
+
+# 결과 
+[[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0],
+[0, 0, 0, 0, 0], 
+[0, 0, 0, 0, 0]]
+```
+
+comprehension을 남용하지 말자 
+
+- simple is better than complex
+- keep it simple stupid 
 
 ### 메서드 체이닝 
 
 여러 메서드를 연속해서 호출하는 방식 
 
+### 메서드 체이닝 주의사항
+
+- 모든 메서드가 체이닝을 지원하는 것은 아님 
+  - 메서드가 객체를 반환할 때만 체이닝이 가능 
+
+- None을 반환하는 메서드는 메서드 체이닝이 불가능 
+  - ex. 리스트의 append(), sort()
+
+- 메서드 체이닝을 사용할 때는 각 메서드의 반환 값을 잘 이해하고 있어야 함  

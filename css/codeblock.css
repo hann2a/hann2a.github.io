@@ -9,6 +9,16 @@ pre::after {
  color: #cfd2d1;
  font-size: 12px;
 }
+
+/* syntax.css의 .highlight를 덮어쓰기 */
+pre.hljs,
+.hljs.highlight,
+.hljs .highlight,
+pre.hljs.highlight {
+ background-color: #343131 !important;
+ color: #cfd2d1 !important;
+}
+
 .hljs {
  display: flex !important;
  flex-direction: column;
@@ -16,8 +26,8 @@ pre::after {
  font-size: 14px;
  border-radius: 8px;
  box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
- color: #cfd2d1;
- background-color: #343131; /* 원래 다크그레이로 복원 */
+ color: #cfd2d1 !important;
+ background-color: #343131 !important; /* !important 추가 */
  font-family: Menlo, Courier, monospace;
 }
 .hljs .line {

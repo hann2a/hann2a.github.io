@@ -212,3 +212,5 @@ print(a is b) # False
 2. copy() 메서드 
 
 3. list() 함수 
+
+57p

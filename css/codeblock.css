@@ -43,10 +43,12 @@ pre::after {
 .hljs .code-header {
  display: flex !important;
  align-items: center !important;
- justify-content: space-between !important; /* 좌우 정렬을 위해 추가 */
+ justify-content: flex-end !important; /* 오른쪽 정렬로 변경 */
  padding: 12px 16px !important; /* 여백을 더 늘림 (7px → 12px, 14px → 16px) */
  background-color: #434041 !important;
  border-radius: 8px 8px 0 0 !important;
+ margin: 0 !important;
+ position: relative !important;
 }
 .hljs .code-header .btn {
  display: none !important; /* 동그란 버튼들 숨기기 */
@@ -61,7 +63,7 @@ pre::after {
  font-size: 12px; /* 폰트 크기도 약간 늘림 (11px → 12px) */
  font-family: inherit;
  transition: 0.2s background-color;
- margin-left: auto; /* 오른쪽으로 밀어내기 */
+ /* margin-left: auto; 제거 - justify-content: flex-end로 충분함 */
 }
 .hljs .header-copy-btn:hover {
  background-color: #ffffff30;

@@ -17,7 +17,7 @@ pre::after {
  border-radius: 8px;
  box-shadow: 0 12px 24px rgb(0 0 0 / 40%);
  color: #cfd2d1;
- background-color: #343131;
+ background-color: #343131; /* 원래 다크그레이로 복원 */
  font-family: Menlo, Courier, monospace;
 }
 .hljs .line {
@@ -26,7 +26,7 @@ pre::after {
  white-space: pre;
 }
 .hljs .line:hover {
- background-color: #262830;
+ background-color: #262830; /* 원래 색상으로 복원 */
 }
 .hljs .line:hover::before {
  color: #cfd2d1;
@@ -48,23 +48,7 @@ pre::after {
  border-radius: 8px 8px 0 0 !important;
 }
 .hljs .code-header .btn {
- border-radius: 50% !important;
- width: 12px !important;
- height: 12px !important;
- margin: 0 4px !important;
- border: none !important;
- display: inline-block !important;
- flex-shrink: 0 !important;
- aspect-ratio: 1 / 1 !important;
-}
-.hljs .code-header .btn.red {
- background-color: #f5655b !important;
-}
-.hljs .code-header .btn.yellow {
- background-color: #f6bd3b !important;
-}
-.hljs .code-header .btn.green {
- background-color: #43c645 !important;
+ display: none !important; /* 동그란 버튼들 숨기기 */
 }
 .hljs .code-body {
  max-height: 600px;
@@ -75,7 +59,7 @@ pre::after {
  width: 12px;
 }
 .hljs .code-body::-webkit-scrollbar-thumb {
- background-color: rgb(1 2 3 / 80%);
+ background-color: rgb(1 2 3 / 80%); /* 원래 스크롤바 색상으로 복원 */
  border-radius: 4px;
 }
 .hljs .code-body::-webkit-scrollbar-corner {

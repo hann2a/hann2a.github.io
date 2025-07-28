@@ -1,14 +1,21 @@
 pre {
- position: relative;
+  position: relative;
+  padding-top: 2em; /* 언어명을 위한 공간 확보 */
 }
+
 pre::after {
- content: attr(data-ke-language);
- position: absolute;
- bottom: 8px;
- right: 12px;
- color: #cfd2d1;
- font-size: 12px;
+  content: attr(data-ke-language);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 8px;
+  background-color: #1a1a1a;
+  color: white;
+  font-size: 12px;
+  font-family: monospace;
+  border-bottom-right-radius: 5px;
 }
+
 
 /* syntax.css의 .highlight를 덮어쓰기 */
 pre.hljs,

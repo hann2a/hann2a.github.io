@@ -11,8 +11,7 @@ summary: 월말평가를 위한 딕셔너리 연습
 # 각 혈액형의 인원수를 계산하는 딕셔너리를 생성하기.
 blood_types = ['A', 'B', 'O', 'AB', 'A', 'O', 'B', 'A', 'AB', 'O', 'A', 'B']
 ```
-
-
+<br>
 ```python
 # 1. [] 표기법을 사용한 방법
 def count_blood_types(blood_types):

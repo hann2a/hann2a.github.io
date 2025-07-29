@@ -1,4 +1,4 @@
-/* 공통 스타일 */
+/* ✅ 공통 pre 초기화 */
 pre {
   position: relative;
   padding: 0;
@@ -6,31 +6,32 @@ pre {
   border: none;
   background: none;
   box-shadow: none;
+  overflow: initial;
 }
 
-/* 기본 코드 배경 및 글자색 */
+/* ✅ Rouge 처리된 pre.highlight 초기화 */
 pre.highlight {
   background: none;
   padding: 0;
   margin: 0;
   border: none;
   box-shadow: none;
-  overflow: auto;
+  overflow: initial;
 }
 
-/* 전체 코드 블록 레이아웃 */
+/* ✅ 코드 전체 영역 스타일 */
 .highlight {
   position: relative;
   display: block;
   font-size: 14px;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;  /* ⭐️ 스크롤 막지 않도록 visible */
   color: #cfd2d1;
   background-color: #343131;
   font-family: Menlo, Courier, monospace;
 }
 
-/* 상단 코드 헤더 */
+/* ✅ 상단 헤더 영역 */
 .highlight .code-header {
   position: absolute;
   top: 0;
@@ -50,7 +51,7 @@ pre.highlight {
   box-sizing: border-box;
 }
 
-/* 복사 버튼 */
+/* ✅ Copy 버튼 */
 .highlight .header-copy-btn {
   background-color: #ffffff17;
   border: none;
@@ -67,29 +68,28 @@ pre.highlight {
   justify-content: center;
   height: auto;
 }
-
 .highlight .header-copy-btn:hover {
   background-color: #ffffff30;
   color: #ffffff;
 }
 
-/* 코드 본문 */
+/* ✅ 코드 내용 영역 */
 .highlight .code-body {
   padding: 1em;
+  padding-top: 3.5em; /* ⭐️ 헤더 공간만큼 아래로 내림 */
   min-height: 80px;
   max-height: 600px;
-  overflow: auto;
+  overflow: auto; /* ⭐️ 스크롤 허용 */
   white-space: pre;
   box-sizing: border-box;
 }
 
-/* 라인별 코드 */
+/* ✅ 줄 번호 및 코드 라인 */
 .highlight .line {
   counter-increment: line-idx;
   line-height: 1.5;
   white-space: pre;
 }
-
 .highlight .line::before {
   content: counter(line-idx);
   width: 24px;
@@ -99,31 +99,27 @@ pre.highlight {
   font-size: 0.8rem;
   color: #747a7a;
 }
-
 .highlight .line:hover {
   background-color: #262830;
 }
-
 .highlight .line:hover::before {
   color: #cfd2d1;
 }
 
-/* 스크롤바 */
+/* ✅ 스크롤바 커스터마이징 */
 .highlight .code-body::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
-
 .highlight .code-body::-webkit-scrollbar-thumb {
   background-color: rgba(1, 2, 3, 0.8);
   border-radius: 4px;
 }
-
 .highlight .code-body::-webkit-scrollbar-corner {
   display: none;
 }
 
-/* 불필요한 버튼 숨김 */
+/* ✅ 기존 버튼 제거 (Jekyll Theme 기본 버튼 등) */
 .highlight .btn,
 .highlight .copy-btn {
   display: none !important;

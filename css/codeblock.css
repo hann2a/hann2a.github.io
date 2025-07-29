@@ -1,27 +1,31 @@
 /* 공통 스타일 */
 pre {
   position: relative;
-  padding-top: 3.5em; /* 헤더 공간 */
-  margin: 1em 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
 /* 기본 코드 배경 및 글자색 */
 pre.highlight {
-  background-color: #343131 !important;
-  color: #cfd2d1 !important;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
 }
 
 /* 전체 코드 블록 레이아웃 */
 .highlight {
   position: relative;
   display: block;
-  padding: 0;
   font-size: 14px;
   border-radius: 8px;
-  overflow: hidden; /* ✅ 하얀 선 방지 */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* ✅ 부드럽게 조정 */
-  color: #cfd2d1 !important;
-  background-color: #343131 !important;
+  overflow: hidden;
+  color: #cfd2d1;
+  background-color: #343131;
   font-family: Menlo, Courier, monospace;
 }
 

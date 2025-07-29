@@ -1,13 +1,13 @@
 
 .highlight  { background: #2a2c2e; color: #f8f8f2; }
-.highlight .c { color: #75715e; font-style: italic } /* Comment */
+.highlight .c { color: ##ffd966; font-style: italic } /* Comment */
 .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
 .highlight .k { color: #f92672; font-weight: bold } /* Keyword */
 .highlight .o { color: #f92672 } /* Operator */
-.highlight .cm { color: #75715e; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #75715e } /* Comment.Preproc */
-.highlight .c1 { color: #75715e; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #75715e; font-weight: bold; font-style: italic } /* Comment.Special */
+.highlight .cm { color: #ffd966; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #ffd966 } /* Comment.Preproc */
+.highlight .c1 { color: #ffd966; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #ffd966; font-weight: bold; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #f92672 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .gr { color: #f92672 } /* Generic.Error */

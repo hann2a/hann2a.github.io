@@ -1,18 +1,21 @@
 /* 공통 스타일 */
 pre {
   position: relative;
-  padding-top: 3.5em; /* 헤더 공간 */
+  padding-top: 3.5em; /* 헤더 공간 더 확보 (기존 2.5em → 3.5em) */
   margin: 1em 0;
 }
 
-/* 기본 코드 배경 및 글자색 */
-pre.highlight {
+/* 기본 코드 배경 및 글자색 오버라이드 */
+pre.hljs,
+.hljs.highlight,
+.hljs .highlight,
+pre.hljs.highlight {
   background-color: #343131 !important;
   color: #cfd2d1 !important;
 }
 
 /* 전체 코드 블록 레이아웃 */
-.highlight {
+.hljs {
   position: relative;
   display: block;
   padding: 0;
@@ -25,15 +28,15 @@ pre.highlight {
 }
 
 /* 상단 코드 헤더 */
-.highlight .code-header {
+.hljs .code-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5em;
+  height: 3.5em; /* ✅ 헤더 높이 크게 */
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: center; /* ✅ 버튼 수직 가운데 정렬 */
   padding: 0 1.2em;
   background-color: #434041;
   color: white;
@@ -45,13 +48,13 @@ pre.highlight {
 }
 
 /* 복사 버튼 */
-.highlight .header-copy-btn {
+.hljs .header-copy-btn {
   background-color: #ffffff17;
   border: none;
   cursor: pointer;
   color: #cfd2d1;
   border-radius: 4px;
-  padding: 5px 14px;
+  padding: 5px 14px; /* ✅ 내부 여백 축소해 공간감 줌 */
   font-size: 12px;
   font-family: inherit;
   transition: background-color 0.2s ease;
@@ -62,26 +65,26 @@ pre.highlight {
   height: auto;
 }
 
-.highlight .header-copy-btn:hover {
+.hljs .header-copy-btn:hover {
   background-color: #ffffff30;
   color: #ffffff;
 }
 
 /* 코드 본문 */
-.highlight .code-body {
+.hljs .code-body {
   padding: 1em;
   max-height: 600px;
   overflow: auto;
 }
 
 /* 라인별 코드 */
-.highlight .line {
+.hljs .line {
   counter-increment: line-idx;
   line-height: 1.5;
   white-space: pre;
 }
 
-.highlight .line::before {
+.hljs .line::before {
   content: counter(line-idx);
   width: 24px;
   display: inline-block;
@@ -91,30 +94,30 @@ pre.highlight {
   color: #747a7a;
 }
 
-.highlight .line:hover {
+.hljs .line:hover {
   background-color: #262830;
 }
 
-.highlight .line:hover::before {
+.hljs .line:hover::before {
   color: #cfd2d1;
 }
 
 /* 스크롤바 */
-.highlight .code-body::-webkit-scrollbar {
+.hljs .code-body::-webkit-scrollbar {
   width: 12px;
 }
 
-.highlight .code-body::-webkit-scrollbar-thumb {
+.hljs .code-body::-webkit-scrollbar-thumb {
   background-color: rgba(1, 2, 3, 0.8);
   border-radius: 4px;
 }
 
-.highlight .code-body::-webkit-scrollbar-corner {
+.hljs .code-body::-webkit-scrollbar-corner {
   display: none;
 }
 
-/* 불필요한 버튼 숨김 */
-.highlight .btn,
-.highlight .copy-btn {
+/* 불필요한 버튼 숨김 (예: 복수 버튼) */
+.hljs .btn,
+.hljs .copy-btn {
   display: none !important;
 }

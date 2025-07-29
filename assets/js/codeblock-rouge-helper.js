@@ -2,25 +2,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const blocks = document.querySelectorAll("pre.highlight");
 
   blocks.forEach((block) => {
-    // 코드 영역
     const code = block.querySelector("code");
     if (!code) return;
 
-    // 줄별로 나누기
-    const lines = code.innerHTML.split("\n");
+    // Rouge의 하이라이팅된 HTML을 줄 단위로 분리
+    const rawLines = code.innerHTML.trim().split(/\n(?![^<]*>)/); // 정규식으로 태그 깨지지 않게 분리
 
-    // 줄 번호 + 코드 감싸기
-    const numberedLines = lines
-      .map((line, idx) => {
-        return `<div class="line" data-line="${idx + 1}">${line || " "}</div>`;
-      })
+    // 줄번호 span 붙이기 (하이라이팅 유지)
+    const numberedHTML = rawLines
+      .map((line, idx) => `<div class="line" data-line="${idx + 1}">${line || " "}</div>`)
       .join("");
 
     const codeBody = document.createElement("div");
     codeBody.className = "code-body";
-    codeBody.innerHTML = numberedLines;
+    codeBody.innerHTML = numberedHTML;
 
-    // 복사 버튼 추가
+    // 복사 버튼 생성
     const header = document.createElement("div");
     header.className = "code-header";
 
@@ -29,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.innerText = "Copy";
 
     button.addEventListener("click", () => {
-      const textToCopy = lines.join("\n");
+      const textToCopy = rawLines.join("\n");
       navigator.clipboard.writeText(textToCopy);
       button.innerText = "Copied!";
       setTimeout(() => (button.innerText = "Copy"), 2000);
@@ -37,9 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     header.appendChild(button);
 
-    // 기존 코드 제거 후 구조 삽입
+    // 기존 code 안을 비우지 않고 통째로 감싸기
+    const wrapper = document.createElement("div");
+    wrapper.appendChild(header);
+    wrapper.appendChild(codeBody);
+
     code.innerHTML = "";
-    code.appendChild(header);
-    code.appendChild(codeBody);
+    code.appendChild(wrapper);
   });
 });

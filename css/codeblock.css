@@ -1,21 +1,18 @@
 /* 공통 스타일 */
 pre {
   position: relative;
-  padding-top: 3.5em; /* 헤더 공간 더 확보 (기존 2.5em → 3.5em) */
+  padding-top: 3.5em; /* 헤더 공간 */
   margin: 1em 0;
 }
 
-/* 기본 코드 배경 및 글자색 오버라이드 */
-pre.hljs,
-.hljs.highlight,
-.hljs .highlight,
-pre.hljs.highlight {
+/* 기본 코드 배경 및 글자색 */
+pre.highlight {
   background-color: #343131 !important;
   color: #cfd2d1 !important;
 }
 
 /* 전체 코드 블록 레이아웃 */
-.hljs {
+.highlight {
   position: relative;
   display: block;
   padding: 0;
@@ -28,15 +25,15 @@ pre.hljs.highlight {
 }
 
 /* 상단 코드 헤더 */
-.hljs .code-header {
+.highlight .code-header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 3.5em; /* ✅ 헤더 높이 크게 */
+  height: 3.5em;
   display: flex;
   justify-content: flex-end;
-  align-items: center; /* ✅ 버튼 수직 가운데 정렬 */
+  align-items: center;
   padding: 0 1.2em;
   background-color: #434041;
   color: white;
@@ -48,13 +45,13 @@ pre.hljs.highlight {
 }
 
 /* 복사 버튼 */
-.hljs .header-copy-btn {
+.highlight .header-copy-btn {
   background-color: #ffffff17;
   border: none;
   cursor: pointer;
   color: #cfd2d1;
   border-radius: 4px;
-  padding: 5px 14px; /* ✅ 내부 여백 축소해 공간감 줌 */
+  padding: 5px 14px;
   font-size: 12px;
   font-family: inherit;
   transition: background-color 0.2s ease;
@@ -65,26 +62,26 @@ pre.hljs.highlight {
   height: auto;
 }
 
-.hljs .header-copy-btn:hover {
+.highlight .header-copy-btn:hover {
   background-color: #ffffff30;
   color: #ffffff;
 }
 
 /* 코드 본문 */
-.hljs .code-body {
+.highlight .code-body {
   padding: 1em;
   max-height: 600px;
   overflow: auto;
 }
 
 /* 라인별 코드 */
-.hljs .line {
+.highlight .line {
   counter-increment: line-idx;
   line-height: 1.5;
   white-space: pre;
 }
 
-.hljs .line::before {
+.highlight .line::before {
   content: counter(line-idx);
   width: 24px;
   display: inline-block;
@@ -94,30 +91,30 @@ pre.hljs.highlight {
   color: #747a7a;
 }
 
-.hljs .line:hover {
+.highlight .line:hover {
   background-color: #262830;
 }
 
-.hljs .line:hover::before {
+.highlight .line:hover::before {
   color: #cfd2d1;
 }
 
 /* 스크롤바 */
-.hljs .code-body::-webkit-scrollbar {
+.highlight .code-body::-webkit-scrollbar {
   width: 12px;
 }
 
-.hljs .code-body::-webkit-scrollbar-thumb {
+.highlight .code-body::-webkit-scrollbar-thumb {
   background-color: rgba(1, 2, 3, 0.8);
   border-radius: 4px;
 }
 
-.hljs .code-body::-webkit-scrollbar-corner {
+.highlight .code-body::-webkit-scrollbar-corner {
   display: none;
 }
 
-/* 불필요한 버튼 숨김 (예: 복수 버튼) */
-.hljs .btn,
-.hljs .copy-btn {
+/* 불필요한 버튼 숨김 */
+.highlight .btn,
+.highlight .copy-btn {
   display: none !important;
 }

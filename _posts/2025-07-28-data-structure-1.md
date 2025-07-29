@@ -138,7 +138,7 @@ summary:
 
 ### 가변 객체 예시 
 
-```Python 
+```python 
 a = [1, 2, 3, 4]
 b = a 
 b[0] = 100

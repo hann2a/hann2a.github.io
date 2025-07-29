@@ -336,7 +336,7 @@ print(f"original['b']와 copied['b']가 같은 객체인가? {original['b'] is c
 [expression for 변수 in iterable]
 list(expression for 변수 in iterable)
 ```
-```Python 
+```python 
 [expression for 변수 in iterable if 조건식]
 list(expression for 변수 in iterable if 조건식)
 ```

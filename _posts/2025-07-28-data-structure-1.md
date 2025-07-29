@@ -138,7 +138,7 @@ summary:
 
 ### 가변 객체 예시 
 
-```python 
+```python
 a = [1, 2, 3, 4]
 b = a 
 b[0] = 100
@@ -149,7 +149,7 @@ print(a is b) # True
 ```
 ### 불변 객체 예시 
 
-```python 
+```python
 a = 20 
 b = a 
 b = 10
@@ -215,7 +215,7 @@ print(a is b) # False
 
 리스트 슬라이싱 
 
-```python 
+```python
 a = [1, 2, 3]
 b = a[:]
 
@@ -231,7 +231,7 @@ print(b) # [1, 2, 3]
 
 copy() 메서드 
 
-```python 
+```python
 a = [1, 2, 3]
 b = a.copy()
 
@@ -245,7 +245,7 @@ print(b) # [1, 2, 3]
 
 list() 함수 
 
-```python 
+```python
 a = [1, 2, 3]
 d = list(a) # list() 함수를 사용하여 a의 얕은 복사본 생성 
 
@@ -260,7 +260,7 @@ print(d) # [1, 2, 3]
 
 2차원 리스트와 같이 변경 가능한 **객체 안에 변경 가능한 객체가 있는** 경우 
 
-```python 
+```python
 a = [1, 2, [3, 4, 5]]
 b = a[:]
 
@@ -302,7 +302,7 @@ new_object = copy.deepcopy(original_object)
 ```
 
 ### 깊은 복사 예시 
-```python 
+```python
 import copy
 
 a = [1, 2, [3, 4, 5]]
@@ -315,7 +315,7 @@ print(b) # [1, 2, [3, 100, 5]]
 print(f'a[2]와 b[2]가 같은 객체인가? {a[2] is b[2]}') #False 
 ```
 중첩된 객체에서의 깊은 복사 
-```python 
+```python
 original = {'a': [1, 2, 3], 'b': {'c':4, 'd': [5, 6]}}
 copied = copy.deepcopy(original)
 
@@ -332,11 +332,11 @@ print(f"original['b']와 copied['b']가 같은 객체인가? {original['b'] is c
 
 ### List Comprehension 구조 
 
-```python 
+```python
 [expression for 변수 in iterable]
 list(expression for 변수 in iterable)
 ```
-```python 
+```python
 [expression for 변수 in iterable if 조건식]
 list(expression for 변수 in iterable if 조건식)
 ```
@@ -347,7 +347,7 @@ list(expression for 변수 in iterable if 조건식)
 ### List Comprehension 구조 
 
 사용 전 
-```python 
+```python
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = []
 for num in numbers:
@@ -356,7 +356,7 @@ print(squared_numbers)
 ```
 
 사용 후 
-```python 
+```python
 numbers = [1, 2, 3, 4, 5]
 squared_numbers = [num**2 for num in numbers]
 print(squared_numbers) # [1, 4, 9, 16, 25]

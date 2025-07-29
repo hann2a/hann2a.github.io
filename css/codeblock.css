@@ -15,6 +15,7 @@ pre.highlight {
   margin: 0;
   border: none;
   box-shadow: none;
+  overflow: auto;
 }
 
 /* 전체 코드 블록 레이아웃 */
@@ -75,8 +76,11 @@ pre.highlight {
 /* 코드 본문 */
 .highlight .code-body {
   padding: 1em;
+  min-height: 80px;
   max-height: 600px;
   overflow: auto;
+  white-space: pre;
+  box-sizing: border-box;
 }
 
 /* 라인별 코드 */
@@ -107,6 +111,7 @@ pre.highlight {
 /* 스크롤바 */
 .highlight .code-body::-webkit-scrollbar {
   width: 12px;
+  height: 12px;
 }
 
 .highlight .code-body::-webkit-scrollbar-thumb {

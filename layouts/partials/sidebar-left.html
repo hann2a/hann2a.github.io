@@ -4,34 +4,41 @@
     <div class="nav-buttons">
       {{ $sec := .Section }}
       {{ $isHome := .IsHome }}
-      {{ $menu := site.Menus.main }}
 
+      {{ $menu := site.Menus.main }}
       {{ if $menu }}
         {{ range $m := $menu }}
-          {{/* 1) 메뉴 대상 식별: pageRef 우선, 없으면 url 기반 경로 추출 */}}
-          {{ $ref := (trim (or $m.PageRef (trim $m.URL "/")) "/") }}
+          {{/* -------------------------------
+               안전한 href / ref 계산 (Scratch)
+               href: 최종 링크
+               ref : 섹션 키(활성화 판단용). "" 이면 홈
+             -------------------------------- */}}
+          {{ $.Scratch.Set "href" "" }}
+          {{ $.Scratch.Set "ref"  "" }}
 
-          {{/* 2) 가능한 페이지 찾기 */}}
-          {{ $page := nil }}
-          {{ if eq $ref "" }}
-            {{ $page = site.Home }}
+          {{ with $m.Page }}
+            {{ $.Scratch.Set "href" .RelPermalink }}
+            {{ $.Scratch.Set "ref"  .Section }}
           {{ else }}
-            {{ $page = site.GetPage (printf "/%s" $ref) }}
-          {{ end }}
-
-          {{/* 3) href 안전 계산: with/if로 분기 (cond 사용 X) */}}
-          {{ $href := "" }}
-          {{ if $page }}
-            {{ $href = $page.RelPermalink }}
-          {{ else }}
-            {{ if $ref }}
-              {{ $href = (printf "/%s/" $ref | relURL) }}
+            {{ with $m.PageRef }}
+              {{ $clean := (trim . "/") }}
+              {{ $.Scratch.Set "ref" $clean }}
+              {{ if or (eq $clean "") (eq . "/") }}
+                {{ $.Scratch.Set "href" ("/" | relURL) }}
+              {{ else }}
+                {{ $.Scratch.Set "href" ((printf "/%s/" $clean) | relURL) }}
+              {{ end }}
             {{ else }}
-              {{ $href = ("/" | relURL) }}
+              {{ with $m.URL }}
+                {{ $.Scratch.Set "href" (. | relURL) }}
+              {{ end }}
             {{ end }}
           {{ end }}
 
-          {{/* 4) active 상태 계산 */}}
+          {{ $href := $.Scratch.Get "href" }}
+          {{ $ref  := $.Scratch.Get "ref" }}
+
+          {{/* ref가 비어있으면 홈 메뉴로 간주 */}}
           {{ $active := or (and (eq $ref "") $isHome) (and (ne $ref "") (eq $sec $ref)) }}
 
           <a class="nav-btn {{ if $active }}active{{ end }}"

@@ -197,3 +197,15 @@ a.sub-btn:hover{filter:brightness(1.05)}
 .table a { text-decoration: none; }   /* 테이블은 밑줄 없이 hover시에만 */
 .table a:hover { text-decoration: underline; }
 .post a { text-decoration: underline; }
+/* 커서: 데스크톱에서만 적용 */
+@media (pointer: fine) {
+  html, body {
+    cursor: url("/cursor/cur1054.cur") 4 4,
+            auto;
+  }
+  /* 클릭 가능한 것들은 pointer 느낌 유지 */
+  a, button, .nav-btn, .sub-btn {
+    cursor: url("/cursor/cur1054.cur") 4 4,
+            pointer;
+  }
+}

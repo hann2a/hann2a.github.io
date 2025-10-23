@@ -255,3 +255,255 @@ a.sub-btn:hover{filter:brightness(1.05)}
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto }
 }
+/* ===============================
+   Codeblock — 2001 Tech UI skin
+   matches Sohee/Hugo theme tokens
+   =============================== */
+
+/* 팔레트 (상위에서 이미 있다면 그대로 사용됨) */
+:root{
+  --code-bg-1:#e6edf5;
+  --code-bg-2:#c8d3df;
+  --code-edge:#6a7886;
+  --code-shadow:rgba(0,0,0,.35);
+  --code-ink:#2b3340;
+  --code-muted:#617084;
+  --code-accent:#0b7893;
+  --code-grad: linear-gradient(180deg,var(--code-bg-1),var(--code-bg-2));
+  --code-grid: repeating-linear-gradient(45deg, #ffffff12 0 2px, transparent 2px 6px);
+  --radius: 12px;
+}
+
+/* 래퍼(자동 부착용): pre가 단독일 때도 시각 톤을 맞추기 위해 장식 레이어 사용 */
+.codebox{
+  position:relative;
+  margin:18px 0;
+  border:1px solid var(--code-edge);
+  border-radius:10px;
+  background: var(--code-grad);
+  box-shadow:
+    inset 0 1px 0 #ffffffcc,
+    inset 0 -1px 0 #0006,
+    0 12px 30px var(--code-shadow);
+  overflow:hidden;
+}
+.codebox::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(120deg,#ffffff2e,transparent 35%), var(--code-grid);
+  pointer-events:none;
+}
+
+/* 헤더(언어/파일명/버튼 영역) */
+.codebox__head{
+  display:flex; align-items:center; gap:10px;
+  padding:8px 12px;
+  border-bottom:1px solid #0005;
+  background: linear-gradient(180deg,#d5dde6,#b7c3cf);
+  font-family: Orbitron, Oxanium, monospace;
+  text-transform: uppercase; letter-spacing:2px;
+  color: var(--code-ink);
+  white-space:nowrap; overflow:auto;
+}
+.codebox__lang{opacity:.8}
+.codebox__file{margin-left:auto; font-family: Inter, ui-sans-serif, system-ui; opacity:.7}
+
+/* copy 버튼 */
+.codebox__btn{
+  margin-left:auto;
+  border:1px solid #5b6570;
+  background:linear-gradient(180deg,#f7fbff,#cfd7df);
+  box-shadow:inset 0 1px 0 #fff8, 0 1px 0 #0004;
+  padding:4px 8px;
+  border-radius:6px;
+  font: 600 12px/1 Inter, system-ui, sans-serif;
+  color:#1b2128;
+  cursor:pointer;
+}
+.codebox__btn:hover{filter:brightness(1.05)}
+.codebox__btn:active{transform:translateY(1px)}
+
+/* 실제 코드 영역 */
+.codebox pre{
+  margin:0;           /* 헤더와 간격 제거 */
+  padding:14px 16px 16px;
+  overflow:auto;      /* 내부 스크롤 */
+  -webkit-overflow-scrolling:touch;
+  color: var(--code-ink);
+  background: transparent;
+  font: 500 13.5px/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  tab-size: 2;
+}
+
+/* 인라인 코드 */
+:where(p, li, .post) code{
+  background: linear-gradient(180deg,#f1f5f9,#cbd5df);
+  border:1px solid var(--code-edge);
+  padding:0 .35em; border-radius:6px;
+  color:var(--code-ink);
+}
+
+/* 라인 넘버(Chroma .ln / Prism .line-numbers) */
+.codebox pre .ln, .codebox pre .line-numbers-rows span{
+  display:inline-block; min-width:2.2em; margin-right:12px;
+  text-align:right; color: var(--code-muted);
+  user-select:none;
+}
+
+/* 선택 영역, 하이라이트 라인 */
+.codebox pre ::selection{ background: #7afcff55 }
+.codebox .hl, .codebox .highlight-line{
+  display:block; margin:0 -16px; padding:0 16px;
+  background: linear-gradient(90deg,#8fd7ff22,transparent 60%);
+  border-left:3px solid var(--accent, #6ee1ff);
+}
+
+/* 스크롤바(코드 내부) */
+.codebox pre::-webkit-scrollbar{height:10px;width:10px}
+.codebox pre::-webkit-scrollbar-track{background:#171a21;border-radius:10px}
+.codebox pre::-webkit-scrollbar-thumb{
+  background:#3a3f4d;border-radius:10px;border:3px solid #171a21
+}
+.codebox pre{ scrollbar-width:thin; scrollbar-color:#3a3f4d #171a21 }
+
+/* -------- Syntax colors (Chroma/Prism 공통 매핑) -------- */
+.codebox .k, .token.keyword{ color:#3b67b3; font-weight:600 }          /* keyword */
+.codebox .nf, .token.function{ color:#0b7893; font-weight:600 }        /* func */
+.codebox .nb, .token.builtin{ color:#27506d }
+.codebox .nc, .token.class-name{ color:#5b3aa1; font-weight:600 }
+.codebox .nt, .token.selector{ color:#7a4f2b; font-weight:600 }
+.codebox .s, .se, .token.string{ color:#2d7a3b }                       /* string */
+.codebox .na, .token.attr-name{ color:#7a2d5e }
+.codebox .mi, .mf, .mh, .token.number{ color:#7a4bd1 }
+.codebox .c, .cm, .c1, .token.comment{ color:#6a7886; font-style:italic }
+.codebox .o, .token.operator{ color:#405060 }
+.codebox .p, .token.punctuation{ color:#546070 }
+.codebox .gd{ background:#ffdddd80 } /* diff delete */
+.codebox .gi{ background:#ddffdd80 } /* diff insert */
+/* ===============================
+   2001 Tech UI — DataTable skin
+   =============================== */
+
+/* 래퍼: 가로 스크롤/톤 배경 */
+.table-wrap{
+  margin: 14px 0;
+  border:1px solid #4a5561;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(180deg,#e6edf5,#c8d3df);
+  box-shadow:
+    inset 0 1px 0 #ffffffcc,
+    inset 0 -1px 0 #0006,
+    0 12px 30px rgba(0,0,0,.35);
+  position: relative;
+}
+.table-wrap::before{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(120deg,#ffffff2e,transparent 35%),
+              repeating-linear-gradient(45deg,#ffffff12 0 2px,transparent 2px 6px);
+  pointer-events:none;
+}
+
+/* 상단 바(선택) : 제목/필터 영역 */
+.table-head{
+  display:flex; align-items:center; gap:10px;
+  padding:8px 12px;
+  border-bottom:1px solid #0005;
+  background: linear-gradient(180deg,#d5dde6,#b7c3cf);
+  font-family: Orbitron, Oxanium, monospace;
+  text-transform: uppercase; letter-spacing:2px;
+  color:#2b3340;
+}
+.table-head .hint{margin-left:auto; opacity:.65; font: 500 12px/1 Inter, system-ui}
+
+/* 실제 테이블 */
+.table, .table-wrap table{
+  width:100%;
+  border-collapse: separate;   /* 인셋 라인 살리기 */
+  border-spacing:0;
+  font-size:14px;
+  color:#2b3340;
+}
+
+/* 헤더: 스티키, 메탈 톤 */
+.table thead th{
+  position: sticky; top:0; z-index:1;
+  text-align:left;
+  padding:10px 12px;
+  background: linear-gradient(180deg,#e9f0f7,#c9d4df);
+  color:#2a3139;
+  border-bottom:1px solid #6a7886;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+/* 바디 셀 */
+.table tbody td{
+  padding:10px 12px;
+  border-bottom:1px solid #a5b0ba80;
+  background: linear-gradient(180deg, #f7fbff, #d8e1ea 80%, #cbd5df);
+}
+
+/* 지브라 + 호버 */
+.table tbody tr:nth-child(odd) td{
+  background: linear-gradient(180deg, #f1f6fb, #d3dde7 80%, #c4ced8);
+}
+.table tbody tr:hover td{
+  background: linear-gradient(180deg,#def6ff,#bfe7ff);
+}
+
+/* 선택 상태(원한다면 tr.selected 붙이기) */
+.table tr.selected td{
+  background: linear-gradient(180deg,#d5f5ff,#97e8ff);
+  box-shadow: inset 0 0 0 1px #ffffffaa;
+}
+
+/* 인덱스/날짜/작성자 너비 예시(있으면) */
+.table .idx{ width:60px; color:#4f5964 }
+.table .date{ width:140px; color:#4f5964 }
+.table .author{ width:160px; color:#4f5964 }
+
+/* 링크 톤 */
+.table a{ color:#0b7893; text-decoration:none }
+.table a:hover{ text-decoration:underline }
+
+/* 푸터/요약 줄 */
+.table tfoot td{
+  padding:10px 12px;
+  background: linear-gradient(180deg,#d5dde6,#b7c3cf);
+  color:#2b3340;
+  border-top:1px solid #6a7886;
+  font-weight:600;
+}
+
+/* 가로 스크롤(작은 화면) */
+.table-scroll{
+  overflow:auto; -webkit-overflow-scrolling: touch;
+}
+.table-scroll::-webkit-scrollbar{ height:10px }
+.table-scroll::-webkit-scrollbar-track{ background:#171a21; border-radius:10px }
+.table-scroll::-webkit-scrollbar-thumb{
+  background:#3a3f4d; border-radius:10px; border:3px solid #171a21
+}
+.table-scroll{ scrollbar-width:thin; scrollbar-color:#3a3f4d #171a21 }
+
+/* 밀도 옵션 */
+.table--compact td{ padding:6px 10px }
+.table--spacious td{ padding:14px 14px }
+
+/* 배지/상태칩 */
+.badge{
+  display:inline-block; padding:2px 8px; border-radius:999px;
+  border:1px solid #5b6570;
+  background:linear-gradient(180deg,#f7fbff,#cfd7df);
+  color:#1b2128; font:600 12px/1 Inter, system-ui
+}
+.badge--ok{ border-color:#1e7a4e; background:linear-gradient(180deg,#eafff4,#b8f2d2) }
+.badge--warn{ border-color:#a6751e; background:linear-gradient(180deg,#fff8e6,#fde2a8) }
+.badge--err{ border-color:#a11e1e; background:linear-gradient(180deg,#ffecec,#ffc1c1) }
+
+/* 반응형 */
+@media (max-width: 860px){
+  .table-head{ padding:8px 10px }
+  .table tbody td, .table thead th{ padding:8px 10px; font-size:13px }
+}

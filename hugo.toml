@@ -6,6 +6,10 @@ defaultContentLanguage = "ko"
   tag = "tags"
 
 [markup]
+  [markup.highlight]
+      style = "monokai"   # 어떤 값이어도 됨(우리가 CSS로 덮어씀)
+      lineNos = true
+      noClasses = false   # 반드시 false (클래스로 출력)
   [markup.goldmark.renderer]
     unsafe = true
 

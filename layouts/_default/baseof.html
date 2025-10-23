@@ -9,9 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Oxanium:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  {{/* 2001 Tech 스타일(assets/css/main.css) */}}
-  {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}">
+  {{/* CSS: assets 파이프 + static 폴백 (안전 버전) */}}
+  {{ $style := resources.Get "css/main.css" }}
+  {{ if $style }}
+    {{ $style = $style | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ end }}
+
 </head>
 <body>
   {{ partial "topbar.html" . }}

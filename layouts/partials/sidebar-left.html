@@ -4,19 +4,40 @@
     <div class="nav-buttons">
       {{ $sec := .Section }}
       {{ $isHome := .IsHome }}
-      {{ range $m := site.Menus.main }}
-        {{/* 1) 대상 섹션 페이지를 최대한 안전하게 찾음 */}}
-        {{ $ref := trim ($m.PageRef | default (trim $m.URL "/")) "/" }}
-        {{ $page := site.GetPage (printf "/%s" $ref) }}
-        {{/* 2) href 계산: 섹션 페이지가 있으면 그 퍼머링크, 없으면 /<ref>/ 로 폴백 */}}
-        {{ $href := cond $page $page.RelPermalink (printf "/%s/" $ref | relURL) }}
+      {{ $menu := site.Menus.main }}
 
-        {{/* 3) 활성 상태 계산 */}}
-        {{ $active := or (and (eq $ref "") $isHome) (and (ne $ref "") (eq $sec $ref)) }}
+      {{ if $menu }}
+        {{ range $m := $menu }}
+          {{/* 1) 메뉴 대상 식별: pageRef 우선, 없으면 url 기반 경로 추출 */}}
+          {{ $ref := (trim (or $m.PageRef (trim $m.URL "/")) "/") }}
 
-        <a class="nav-btn {{ if $active }}active{{ end }}"
-           href="{{ $href }}"
-           data-view="{{ lower $m.Name }}">{{ $m.Name }}</a>
+          {{/* 2) 가능한 페이지 찾기 */}}
+          {{ $page := nil }}
+          {{ if eq $ref "" }}
+            {{ $page = site.Home }}
+          {{ else }}
+            {{ $page = site.GetPage (printf "/%s" $ref) }}
+          {{ end }}
+
+          {{/* 3) href 안전 계산: with/if로 분기 (cond 사용 X) */}}
+          {{ $href := "" }}
+          {{ if $page }}
+            {{ $href = $page.RelPermalink }}
+          {{ else }}
+            {{ if $ref }}
+              {{ $href = (printf "/%s/" $ref | relURL) }}
+            {{ else }}
+              {{ $href = ("/" | relURL) }}
+            {{ end }}
+          {{ end }}
+
+          {{/* 4) active 상태 계산 */}}
+          {{ $active := or (and (eq $ref "") $isHome) (and (ne $ref "") (eq $sec $ref)) }}
+
+          <a class="nav-btn {{ if $active }}active{{ end }}"
+             href="{{ $href }}"
+             data-view="{{ lower $m.Name }}">{{ $m.Name }}</a>
+        {{ end }}
       {{ end }}
     </div>
   </div>

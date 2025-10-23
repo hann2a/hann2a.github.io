@@ -37,10 +37,10 @@
         <span class="crumb">/</span>
         <span class="crumb">Archive</span>
 
-        {{/* 첫 번째 동적 크럼브: 홈이면 Vision, 섹션이면 섹션 제목, 그 외엔 현재 페이지 제목 */}}
+        {{/* 첫 번째 동적 크럼브: 홈이면 Profile, 섹션이면 섹션 제목, 그 외엔 현재 페이지 제목 */}}
         <span class="crumb">
           {{- if .IsHome -}}
-            Vision
+            Profile
           {{- else if ne $sec "" -}}
             {{ $curr.Title }}
           {{- else -}}

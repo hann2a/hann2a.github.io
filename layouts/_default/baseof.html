@@ -17,7 +17,17 @@
   {{ else }}
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   {{ end }}
-
+  <style>
+  @media (pointer: fine) {
+    html, body {
+      cursor: url('{{ "cursor/cur1053.png" | relURL }}') 0 0, auto;
+    }
+    a, button, .nav-btn, .sub-btn {
+      cursor: url('{{ "cursor/cur1053.png" | relURL }}') 0 0, pointer;
+    }
+    input, textarea { cursor: text; }
+  }
+  </style>
 </head>
 <body>
   {{ partial "topbar.html" . }}

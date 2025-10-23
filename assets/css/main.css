@@ -16,10 +16,12 @@
   --ink:#2b3340;      /* primary text on chrome */
   --muted:#9aa5b1;
   --grid: rgba(255,255,255,.04);
+  --radius:12px;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* --- Base reset & layout safety --- */
+*{ box-sizing:border-box }
+html, body{ min-height:100dvh }                /* ← 100% 대신 100dvh */
 body{
   margin:0;
   background:
@@ -30,6 +32,10 @@ body{
   color:var(--text);
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, sans-serif;
   letter-spacing:.1px;
+
+  overflow-x:hidden;                           /* ← 가로 숨김 */
+  overflow-y:auto;                             /* ← 세로 스크롤 허용 */
+  -webkit-overflow-scrolling:touch;            /* iOS 부드러운 스크롤 */
 }
 
 /* ---------------- Top chrome bar ---------------- */
@@ -86,7 +92,7 @@ body{
   text-transform:uppercase; letter-spacing:1px; color:#1b2128; cursor:pointer; position:relative
 }
 .nav-btn::after{content:"»"; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:#3b4652}
-.nav-btn:hover{filter:brightness(1.05)}
+.nav-btn:hover{filter:brightness(1.05))}
 .nav-btn.active{background:linear-gradient(180deg,#d5f5ff,#97e8ff); border-color:#1e90a8; box-shadow:inset 0 0 0 1px #fff}
 
 /* ---------------- Sub nav ---------------- */
@@ -101,7 +107,7 @@ body{
   text-transform:uppercase; letter-spacing:1px; color:#1b2128; cursor:pointer; position:relative
 }
 .sub-btn::after{content:"•"; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:#3b4652}
-.sub-btn:hover{filter:brightness(1.05)}
+.sub-btn:hover{filter:brightness(1.05))}
 .sub-btn.active{background:linear-gradient(180deg,#d5f5ff,#97e8ff); border-color:#1e90a8; box-shadow:inset 0 0 0 1px #fff}
 
 /* ---------------- Main window ---------------- */
@@ -117,8 +123,22 @@ body{
 .titlebar .crumb:last-child{opacity:1}
 .titlebar .crumb:last-child::after{display:none}
 
-.viewport{flex:1; background:linear-gradient(180deg,#f1f5f9,#c5ced8 75%, #aab4be); position:relative; overflow:hidden}
-.viewport-inner{position:absolute; inset:0; padding:28px; display:grid; grid-template-columns: 1fr; align-content:start; gap:18px}
+/* ---- Viewport: allow content growth & scrolling ---- */
+.viewport{
+  flex:1;
+  background:linear-gradient(180deg,#f1f5f9,#c5ced8 75%, #aab4be);
+  position:relative;
+  overflow:auto;                        /* ← 내부 스크롤 허용 */
+}
+.viewport-inner{
+  position:static;                      /* ← absolute 해제 */
+  min-height:100%;
+  padding:28px;
+  display:grid;
+  grid-template-columns: 1fr;
+  align-content:start;
+  gap:18px;
+}
 .glass{
   backdrop-filter: blur(2.5px);
   background: linear-gradient(180deg, #ffffffdd, #d9e0e7dd);
@@ -133,7 +153,11 @@ body{
 /* ---------------- Board (simple list) ---------------- */
 .board, .board .chrome{color:var(--ink)}
 .board-header{padding:10px 14px;color:#6a7886;font-family:Orbitron, Oxanium, monospace;letter-spacing:2px}
-.board-scroll{max-height:calc(100vh - 260px); overflow:auto}
+.board-scroll{
+  max-height:calc(100dvh - 260px);      /* ← 100vh → 100dvh */
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
 
 /* Table */
 .table{width:100%; border-collapse:collapse; font-size:14px}
@@ -172,13 +196,6 @@ footer{max-width:1200px;margin:24px auto; padding:0 16px 40px; color:var(--muted
 a.sub-btn{display:inline-block; padding:6px 10px; border:1px solid #5b6570; background:linear-gradient(180deg,#f1f5f9,#c5ced8); text-decoration:none; color:var(--ink)}
 a.sub-btn:hover{filter:brightness(1.05)}
 
-/* ---------------- Responsive ---------------- */
-@media (max-width: 860px){
-  .shell{grid-template-columns:1fr}
-  .shell.has-subnav{grid-template-columns:1fr}
-  .subnav{display:none}
-  .viewport-inner{padding:16px}
-}
 /* 좌측 메뉴/서브메뉴 링크는 밑줄 제거 */
 .nav-btn,
 .nav-btn:link,
@@ -197,15 +214,44 @@ a.sub-btn:hover{filter:brightness(1.05)}
 .table a { text-decoration: none; }   /* 테이블은 밑줄 없이 hover시에만 */
 .table a:hover { text-decoration: underline; }
 .post a { text-decoration: underline; }
+
 /* 커서: 데스크톱에서만 적용 */
 @media (pointer: fine) {
   html, body {
-    cursor: url("/cursor/cur1054.cur") 4 4,
-            auto;
+    cursor: url("/cursor/cur1054.cur") 4 4, auto;
   }
   /* 클릭 가능한 것들은 pointer 느낌 유지 */
   a, button, .nav-btn, .sub-btn {
-    cursor: url("/cursor/cur1054.cur") 4 4,
-            pointer;
+    cursor: url("/cursor/cur1054.cur") 4 4, pointer;
   }
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 860px){
+  .shell{grid-template-columns:1fr}
+  .shell.has-subnav{grid-template-columns:1fr}
+  .subnav{display:none}
+  .viewport-inner{padding:16px}
+}
+
+/* ---------------- Scrollbar styling (tone-matched) ---------------- */
+/* WebKit (Chrome/Edge/Safari) */
+*::-webkit-scrollbar{ width:12px; height:12px }
+*::-webkit-scrollbar-track{
+  background:#171a21;
+  border-radius:var(--radius);
+}
+*::-webkit-scrollbar-thumb{
+  background:#3a3f4d;
+  border-radius:var(--radius);
+  border:3px solid #171a21; /* padding effect */
+}
+*::-webkit-scrollbar-thumb:hover{ background:#50576a }
+
+/* Firefox */
+*{ scrollbar-width:thin; scrollbar-color:#3a3f4d #171a21 }
+
+/* Motion preference */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto }
 }

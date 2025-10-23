@@ -5,24 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ .Title }}</title>
   <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}Retro 2001-style portfolio shell{{ end }}">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Oxanium:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  {{/* CSS: assets 파이프 + static 폴백 (안전 버전) */}}
+  {{/* -------- CSS (assets 파이프 + static 폴백, 안전 버전) -------- */}}
   {{ $style := resources.Get "css/main.css" }}
   {{ if $style }}
     {{ $style = $style | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
   {{ else }}
     <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ end }}
+
+  {{/* -------- 커서: .cur(정상) + .png(사파리 폴백) -------- */}}
+  <style>
+  @media (pointer: fine) {
+    html, body {
+      cursor:
+        url('{{ "cursor/sohee.cur" | relURL }}') 4 4,
+        url('{{ "cursor/sohee.png" | relURL }}') 4 4,
+        auto;
+    }
+    a, button, .nav-btn, .sub-btn {
+      cursor:
+        url('{{ "cursor/sohee.cur" | relURL }}') 4 4,
+        url('{{ "cursor/sohee.png" | relURL }}') 4 4,
+        pointer;
+    }
+    input, textarea { cursor: text; }
+  }
+  </style>
 </head>
 <body>
   {{ partial "topbar.html" . }}
 
   {{/* --- 서브내브 표시 여부 계산 --- */}}
-  {{ $sec := .Section }}                        {{/* string: 현재 1차 섹션 키 ("" | "services" | ...) */}}
-  {{ $curr := .CurrentSection }}                {{/* page: 현재 1차 섹션 페이지 */}}
+  {{ $sec := .Section }}
+  {{ $curr := .CurrentSection }}
   {{ $hasChildren := and $curr (gt (len $curr.Sections) 0) }}
   {{ $showSubnav := and $hasChildren (ne $sec "") (ne $sec "contact") }}
 
@@ -33,21 +54,19 @@
     <section class="panel window" aria-live="polite">
       <div class="titlebar">
         <span class="crumb">/</span>
-        <span class="crumb">Archive</span>
+        <span class="crumb">{{ or site.Params.crumbHome "Home" }}</span>
 
-        {{/* 첫 번째 동적 크럼브: 홈이면 Profile, 섹션이면 섹션 제목, 그 외엔 현재 페이지 제목 */}}
         <span class="crumb">
           {{- if .IsHome -}}
-            Profile
-          {{- else if ne $sec "" -}}
-            {{ $curr.Title }}
+            {{ .Title }}
+          {{- else if ne .Section "" -}}
+            {{ .CurrentSection.Title }}
           {{- else -}}
             {{ .Title }}
           {{- end -}}
         </span>
 
-        {{/* 두 번째(선택) 크럼브: 섹션 내부의 단일/게시글일 때만 현재 페이지 제목을 추가 */}}
-        {{ if and (ne $sec "") (not .IsHome) (ne .Title $curr.Title) }}
+        {{ if and (ne .Section "") (not .IsHome) (ne .Title .CurrentSection.Title) }}
           <span class="crumb">{{ .Title }}</span>
         {{ end }}
       </div>
@@ -67,9 +86,8 @@
 
   {{ partial "footer.html" . }}
 
-  {{/* 프로그레스 바 펄스 */}}
   <script>
-    (function pulseMeter(){
+    (function(){
       const el = document.getElementById('meter');
       if(!el) return;
       el.style.transition = 'none';

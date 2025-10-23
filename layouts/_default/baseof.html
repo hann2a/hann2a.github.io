@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}Retro 2001-style portfolio shell{{ end }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Oxanium:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  {{/* 2001 Tech 스타일(assets/css/main.css) */}}
+  {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.Permalink }}">
+</head>
+<body>
+  {{ partial "topbar.html" . }}
+
+  {{/* --- 서브내브 표시 여부 계산 --- */}}
+  {{ $sec := .Section }}                        {{/* string: 현재 1차 섹션 키 ("" | "services" | ...) */}}
+  {{ $curr := .CurrentSection }}                {{/* page: 현재 1차 섹션 페이지 */}}
+  {{ $hasChildren := and $curr (gt (len $curr.Sections) 0) }}
+  {{ $showSubnav := and $hasChildren (ne $sec "") (ne $sec "contact") }}
+
+  <main class="shell {{ if $showSubnav }}has-subnav{{ end }}" role="main" id="shell">
+    {{ partial "sidebar-left.html" . }}
+    {{ partial "sidebar-sub.html" . }}
+
+    <section class="panel window" aria-live="polite">
+      <div class="titlebar">
+        <span class="crumb">/</span>
+        <span class="crumb">Archive</span>
+
+        {{/* 첫 번째 동적 크럼브: 홈이면 Vision, 섹션이면 섹션 제목, 그 외엔 현재 페이지 제목 */}}
+        <span class="crumb">
+          {{- if .IsHome -}}
+            Vision
+          {{- else if ne $sec "" -}}
+            {{ $curr.Title }}
+          {{- else -}}
+            {{ .Title }}
+          {{- end -}}
+        </span>
+
+        {{/* 두 번째(선택) 크럼브: 섹션 내부의 단일/게시글일 때만 현재 페이지 제목을 추가 */}}
+        {{ if and (ne $sec "") (not .IsHome) (ne .Title $curr.Title) }}
+          <span class="crumb">{{ .Title }}</span>
+        {{ end }}
+      </div>
+
+      <div class="viewport">
+        <div class="viewport-inner" id="viewport">
+          {{ block "main" . }}{{ end }}
+        </div>
+      </div>
+
+      <div class="status">
+        <div class="meter"><span class="fill" id="meter"></span></div>
+        <span style="font-family: Oxanium; letter-spacing:1px; color:#2b3340">enVISION the FUTURE_</span>
+      </div>
+    </section>
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  {{/* 프로그레스 바 펄스 */}}
+  <script>
+    (function pulseMeter(){
+      const el = document.getElementById('meter');
+      if(!el) return;
+      el.style.transition = 'none';
+      el.style.width = '15%';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        el.style.transition = 'width 900ms cubic-bezier(.2,.9,.2,1)';
+        el.style.width = (30 + Math.random()*60).toFixed(0) + '%';
+      }));
+    })();
+  </script>
+</body>
+</html>

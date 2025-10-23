@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sohee · 2001 Tech UI</title>
+    <link>//localhost:1313/hann2a.github.io/daily/</link>
+    <description>Recent content on Sohee · 2001 Tech UI</description>
+    <generator>Hugo</generator>
+    <language>ko</language>
+    <atom:link href="//localhost:1313/hann2a.github.io/daily/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

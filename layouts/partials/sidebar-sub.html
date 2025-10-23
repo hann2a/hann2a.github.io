@@ -1,0 +1,17 @@
+{{ $sec := .Section }}
+{{ if and $sec (ne $sec "contact") }}
+  {{ $current := site.GetPage (printf "/%s" $sec) }}
+  {{ if and $current (gt (len $current.Sections) 0) }}
+    <aside class="panel subnav" aria-label="Secondary" id="subnav">
+      <div class="panel-header"><span class="led on"></span> <span id="sub-title">{{ $current.Title }}</span></div>
+      <div class="card">
+        <div class="subnav-buttons" id="sub-buttons">
+          {{ range $child := $current.Sections }}
+            <a class="sub-btn {{ if eq $.CurrentSection.RelPermalink $child.RelPermalink }}active{{ end }}"
+               href="{{ $child.RelPermalink }}">{{ $child.Title }}</a>
+          {{ end }}
+        </div>
+      </div>
+    </aside>
+  {{ end }}
+{{ end }}

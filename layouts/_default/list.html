@@ -1,0 +1,31 @@
+{{ define "main" }}
+{{/* 현재 하위 카테고리의 모든 글을 최신순(날짜 내림차순)으로 */}}
+{{ $items := .Pages.ByDate.Reverse }}
+
+<div class="glass board">
+  <div class="board-header chrome">// {{ .Title | upper }} · LIST</div>
+
+  <div class="chrome board-scroll">
+    <table class="table" role="table">
+      <thead>
+        <tr>
+          <th class="idx">NO</th>
+          <th>TITLE</th>
+          <th class="author">AUTHOR</th>
+          <th class="date">DATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $i, $p := $items }}
+          <tr>
+            <td class="idx">{{ add $i 1 }}</td>
+            <td class="title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></td>
+            <td class="author">{{ with $p.Params.author }}{{ . }}{{ else }}Sohee{{ end }}</td>
+            <td class="date">{{ $p.Date.Format "2006-01-02" }}</td>
+          </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{ end }}

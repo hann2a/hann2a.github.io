@@ -1,0 +1,42 @@
+baseURL = "https:/hann2a.github.io/"
+title = "Sohee · 2001 Tech UI"
+defaultContentLanguage = "ko"
+
+[taxonomies]
+  tag = "tags"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[params]
+  perPage = 10
+
+[pagination]
+  pagerSize = 10   # ← 기존 paginate = 10 을 대체
+
+[menu]
+  [[menu.main]]
+    name = "Profile"
+    pageRef = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Daily"
+    pageRef = "/daily"
+    weight = 2
+  [[menu.main]]
+    name = "Portfolio"
+    pageRef = "/portfolio"
+    weight = 3
+  [[menu.main]]
+    name = "Services"
+    pageRef = "/services"
+    weight = 4
+  [[menu.main]]
+    name = "Process"
+    pageRef = "/process"
+    weight = 5
+  [[menu.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 6

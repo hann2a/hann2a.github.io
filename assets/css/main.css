@@ -1,0 +1,199 @@
+/* ===============================
+   2001 Tech UI — Sohee (Hugo)
+   Clean build: no search/filter/tags
+   =============================== */
+
+/* --- Theme tokens --- */
+:root{
+  --bg:#0f1216;
+  --panel:#1b2128;
+  --chrome-1:#bfc7cf;
+  --chrome-2:#88919b;
+  --chrome-3:#4f5964;
+  --accent:#6ee1ff;
+  --accent-2:#7aff9a;
+  --text:#e9eef3;
+  --ink:#2b3340;      /* primary text on chrome */
+  --muted:#9aa5b1;
+  --grid: rgba(255,255,255,.04);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1400px 800px at 110% -10%, rgba(110,225,255,.08), transparent 60%),
+    radial-gradient(1000px 600px at -10% 110%, rgba(122,255,154,.06), transparent 60%),
+    repeating-linear-gradient(0deg, var(--grid) 0 2px, transparent 2px 40px),
+    linear-gradient(180deg, #0b0e12, #11161c 40%, #0f1216 100%);
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, sans-serif;
+  letter-spacing:.1px;
+}
+
+/* ---------------- Top chrome bar ---------------- */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background: linear-gradient(#e7ecf1, #bfc7cf 40%, #a0a9b3 70%, #8c97a2);
+  border-bottom:1px solid #65707b; box-shadow:0 8px 24px rgba(0,0,0,.35)
+}
+.topbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:8px 16px}
+.logo{display:flex;align-items:center;gap:10px;font-family: Oxanium, Orbitron, monospace;letter-spacing:2px; color:#1b1f24; text-transform:uppercase; font-weight:700}
+.logo-badge{width:28px;height:16px;border:2px solid #2e3741;border-radius:100px;position:relative;background:linear-gradient(180deg,#cfd6dd,#9aa5b1)}
+.logo-badge::after{content:"";position:absolute;inset:3px;border-radius:100px;border:2px solid #2e3741;opacity:.65}
+.win-controls{margin-left:auto;display:flex;gap:8px}
+.btn-win{width:14px;height:14px;border-radius:2px;background:linear-gradient(#fff,#aeb7c1);border:1px solid #636e79;box-shadow:inset 0 0 0 1px #fff8}
+.btn-win.min{background:linear-gradient(#ecfffa,#91ffdb)}
+.btn-win.max{background:linear-gradient(#f4f3ff,#b6bbff)}
+.btn-win.close{background:linear-gradient(#ffecec,#ff9d9d)}
+
+/* ---------------- Main layout ---------------- */
+.shell{
+  max-width:1200px;margin:28px auto;padding:0 16px;
+  display:grid;grid-template-columns:260px 1fr;gap:20px
+}
+.shell.has-subnav{grid-template-columns:260px 220px 1fr}
+
+/* panel chrome */
+.panel{
+  background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2));
+  border:1px solid #4a5561;
+  box-shadow:inset 0 1px 0 #ffffffaa, inset 0 -1px 0 #0006, 0 10px 30px rgba(0,0,0,.35);
+  position:relative
+}
+.panel::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg,#ffffff33,transparent 35%), repeating-linear-gradient(45deg, #ffffff10 0 2px, transparent 2px 6px );
+  pointer-events:none
+}
+.panel-header{
+  font-family: Orbitron, Oxanium, monospace;text-transform:uppercase;letter-spacing:2px;
+  background:linear-gradient(180deg,#272f38,#1b2128); color:#e9eef3;
+  padding:10px 14px;border-bottom:1px solid #0008;display:flex;align-items:center;gap:8px
+}
+.panel-header .led{width:8px;height:8px;border-radius:2px;background:#29323b;box-shadow:0 0 0 1px #0008, 0 0 10px transparent}
+.panel-header .led.on{background:var(--accent);box-shadow:0 0 0 1px #0c3b45,0 0 14px var(--accent)}
+
+/* ---------------- Left nav ---------------- */
+.nav{padding:10px}
+.nav .card{background:linear-gradient(180deg,#dde5ee, #b3bdc8);border:1px solid #64707d;box-shadow:inset 0 1px 0 #fff8}
+.nav-buttons{display:grid;gap:8px;padding:12px}
+.nav-btn{
+  appearance:none;border:0;background:linear-gradient(180deg,#f7fbff,#cfd7df);
+  border:1px solid #5b6570;box-shadow:inset 0 1px 0 #fff8, 0 1px 0 #0005;
+  padding:10px 12px; text-align:left; font-family: Oxanium, Orbitron, monospace;
+  text-transform:uppercase; letter-spacing:1px; color:#1b2128; cursor:pointer; position:relative
+}
+.nav-btn::after{content:"»"; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:#3b4652}
+.nav-btn:hover{filter:brightness(1.05)}
+.nav-btn.active{background:linear-gradient(180deg,#d5f5ff,#97e8ff); border-color:#1e90a8; box-shadow:inset 0 0 0 1px #fff}
+
+/* ---------------- Sub nav ---------------- */
+.subnav{display:none; padding:10px}
+.shell.has-subnav .subnav{display:block}
+.subnav .card{background:linear-gradient(180deg,#dde5ee, #b3bdc8);border:1px solid #64707d;box-shadow:inset 0 1px 0 #fff8}
+.subnav-buttons{display:grid;gap:8px;padding:12px}
+.sub-btn{
+  appearance:none;border:0;background:linear-gradient(180deg,#f7fbff,#cfd7df);
+  border:1px solid #5b6570;box-shadow:inset 0 1px 0 #fff8, 0 1px 0 #0005;
+  padding:10px 12px; text-align:left; font-family: Oxanium, Orbitron, monospace;
+  text-transform:uppercase; letter-spacing:1px; color:#1b2128; cursor:pointer; position:relative
+}
+.sub-btn::after{content:"•"; position:absolute; right:10px; top:50%; transform:translateY(-50%); color:#3b4652}
+.sub-btn:hover{filter:brightness(1.05)}
+.sub-btn.active{background:linear-gradient(180deg,#d5f5ff,#97e8ff); border-color:#1e90a8; box-shadow:inset 0 0 0 1px #fff}
+
+/* ---------------- Main window ---------------- */
+.window{min-height:520px; display:flex; flex-direction:column}
+.titlebar{
+  background:linear-gradient(180deg,#dce4ed,#b3bdc8); border-bottom:1px solid #4a5561;
+  padding:8px 12px; font-family: Orbitron, Oxanium, monospace; letter-spacing:2px;
+  text-transform:uppercase; color:#2a3139; display:flex; gap:8px; align-items:center;
+  white-space:nowrap; overflow:auto
+}
+.titlebar .crumb{opacity:.8}
+.titlebar .crumb::after{content:"//"; margin:0 8px; opacity:.6}
+.titlebar .crumb:last-child{opacity:1}
+.titlebar .crumb:last-child::after{display:none}
+
+.viewport{flex:1; background:linear-gradient(180deg,#f1f5f9,#c5ced8 75%, #aab4be); position:relative; overflow:hidden}
+.viewport-inner{position:absolute; inset:0; padding:28px; display:grid; grid-template-columns: 1fr; align-content:start; gap:18px}
+.glass{
+  backdrop-filter: blur(2.5px);
+  background: linear-gradient(180deg, #ffffffdd, #d9e0e7dd);
+  border:1px solid #6a7886; box-shadow:inset 0 1px 0 #fff8
+}
+
+/* Vision/section intro */
+.vision{padding:22px}
+.vision h1{margin:0 0 8px; font-family: Orbitron, Oxanium, monospace; text-transform:uppercase; letter-spacing:3px; font-size:18px; color:var(--ink)}
+.vision p{margin:0; color:var(--ink); line-height:1.6}
+
+/* ---------------- Board (simple list) ---------------- */
+.board, .board .chrome{color:var(--ink)}
+.board-header{padding:10px 14px;color:#6a7886;font-family:Orbitron, Oxanium, monospace;letter-spacing:2px}
+.board-scroll{max-height:calc(100vh - 260px); overflow:auto}
+
+/* Table */
+.table{width:100%; border-collapse:collapse; font-size:14px}
+.table thead th{
+  text-align:left; padding:10px 12px; border-bottom:1px solid #6a7886; color:var(--ink)
+}
+.table td{
+  padding:10px 12px; border-bottom:1px solid #a5b0ba80; color:var(--ink)
+}
+.table .idx{width:52px; color:#4f5964}
+.table .author{width:160px; color:#4f5964}
+.table .date{width:140px; color:#4f5964}
+.table a{color:#0b7893; text-decoration:none}
+.table a:hover{text-decoration:underline}
+
+/* ---------------- Post (detail) ---------------- */
+.post, .post h1, .post .meta, .post .body{ color:var(--ink) }
+.post{ padding:22px }
+.post h1{
+  margin:0 0 8px; font-family: Orbitron, Oxanium, monospace;
+  text-transform:uppercase; letter-spacing:2px; font-size:20px
+}
+.post .meta{ font-size:12px; color:#4f5964; margin-bottom:12px }
+.post .body p{ line-height:1.7; margin:0 0 12px }
+.post a{ color:#0b7893; text-decoration:underline }
+
+/* ---------------- Status bar ---------------- */
+.status{display:flex; gap:16px; align-items:center; padding:10px 14px; border-top:1px solid #0003; background:linear-gradient(180deg,#c7d0da,#b4bec9); color:var(--ink)}
+.status .meter{flex:1; height:6px; background:#2b3440; border:1px solid #0005; box-shadow:inset 0 0 0 1px #4f5a66; position:relative}
+.status .meter .fill{position:absolute; inset:0; width:35%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow:0 0 16px #7afcff88 inset}
+
+/* ---------------- Footer ---------------- */
+footer{max-width:1200px;margin:24px auto; padding:0 16px 40px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between}
+
+/* ---------------- Utilities ---------------- */
+a.sub-btn{display:inline-block; padding:6px 10px; border:1px solid #5b6570; background:linear-gradient(180deg,#f1f5f9,#c5ced8); text-decoration:none; color:var(--ink)}
+a.sub-btn:hover{filter:brightness(1.05)}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 860px){
+  .shell{grid-template-columns:1fr}
+  .shell.has-subnav{grid-template-columns:1fr}
+  .subnav{display:none}
+  .viewport-inner{padding:16px}
+}
+/* 좌측 메뉴/서브메뉴 링크는 밑줄 제거 */
+.nav-btn,
+.nav-btn:link,
+.nav-btn:visited,
+.nav-btn:hover,
+.nav-btn:focus,
+.sub-btn,
+.sub-btn:link,
+.sub-btn:visited,
+.sub-btn:hover,
+.sub-btn:focus {
+  text-decoration: none;
+}
+
+/* (참고) 본문/리스트 링크는 기존 스타일 유지 */
+.table a { text-decoration: none; }   /* 테이블은 밑줄 없이 hover시에만 */
+.table a:hover { text-decoration: underline; }
+.post a { text-decoration: underline; }

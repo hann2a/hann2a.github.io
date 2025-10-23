@@ -1,0 +1,23 @@
+<aside class="panel nav" aria-label="Primary">
+  <div class="panel-header"><span class="led on"></span> Menu</div>
+  <div class="card">
+    <div class="nav-buttons">
+      {{ $sec := .Section }}
+      {{ $isHome := .IsHome }}
+      {{ range $m := site.Menus.main }}
+        {{/* 1) 대상 섹션 페이지를 최대한 안전하게 찾음 */}}
+        {{ $ref := trim ($m.PageRef | default (trim $m.URL "/")) "/" }}
+        {{ $page := site.GetPage (printf "/%s" $ref) }}
+        {{/* 2) href 계산: 섹션 페이지가 있으면 그 퍼머링크, 없으면 /<ref>/ 로 폴백 */}}
+        {{ $href := cond $page $page.RelPermalink (printf "/%s/" $ref | relURL) }}
+
+        {{/* 3) 활성 상태 계산 */}}
+        {{ $active := or (and (eq $ref "") $isHome) (and (ne $ref "") (eq $sec $ref)) }}
+
+        <a class="nav-btn {{ if $active }}active{{ end }}"
+           href="{{ $href }}"
+           data-view="{{ lower $m.Name }}">{{ $m.Name }}</a>
+      {{ end }}
+    </div>
+  </div>
+</aside>

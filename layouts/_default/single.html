@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="glass post">
+  <h1>// {{ .Title }}</h1>
+  <div class="meta">
+    {{ with .Params.author }}{{ . }} · {{ end }}{{ .Date.Format "2006-01-02" }}
+    {{ with .Params.tags }} · #{{ delimit . " · #" }}{{ end }}
+  </div>
+  <div class="body">{{ .Content }}</div>
+</div>
+
+<div class="pagination" style="justify-content:space-between">
+  <div>{{ with .PrevInSection }}<a class="page-btn" href="{{ .RelPermalink }}">‹ Prev</a>{{ end }}</div>
+  <div>{{ with .NextInSection }}<a class="page-btn" href="{{ .RelPermalink }}">Next ›</a>{{ end }}</div>
+</div>
+{{ end }}
